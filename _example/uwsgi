@@ -1,0 +1,12 @@
+/usr/local/bin/uwsgi \
+    --chdir=/home/unitapi/app \
+    --module=lasotuvi.wsgi:application \
+    --env DJANGO_SETTINGS_MODULE=lasotuvi.settings \
+    --master --pidfile=/home/unitapi/lstv.pid \
+    --socket=127.0.0.1:29000 \
+    --processes=2 \
+    --uid=1001 --gid=1001 \
+    --harakiri=20 \
+    --max-requests=30 \
+    --vacuum \
+    --daemonize=/home/unitapi/lstv.log
