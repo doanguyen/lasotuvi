@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 (c) 2016 Nguyen Van Dung.
-
-Attributes:
-    sao (TYPE): Description
 """
 from AmDuong import nguHanh
 

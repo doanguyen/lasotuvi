@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+(c) 2016 Nguyen Van Dung.
+"""
 from django.conf.urls import url
 from django.http import HttpResponse
 import datetime

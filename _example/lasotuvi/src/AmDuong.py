@@ -85,7 +85,7 @@ thienCan = [
         "tenCan": "Tân",
         "nguHanh": "K",
         "nguHanhID": 1,
-        "vitriDiaBan": 4,
+        "vitriDiaBan": 10,
         'amDuong': -1
     },
     {
@@ -204,17 +204,17 @@ diaChi = [
 
 def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
     """Summary
-    
+
     Args:
         nn (TYPE): Description
         tt (TYPE): Description
         nnnn (TYPE): Description
         duongLich (bool, optional): Description
         timeZone (int, optional): Description
-    
+
     Returns:
         TYPE: Description
-    
+
     Raises:
         Exception: Description
     """
@@ -439,14 +439,14 @@ def timCuc(viTriCungMenhTrenDiaBan, canNamSinh):
 
 def timTuVi(cuc, ngaySinhAmLich):
     """Tìm vị trí của sao Tử vi
-    
+
     Args:
         cuc (TYPE): Description
         ngaySinhAmLich (TYPE): Description
-    
+
     Returns:
         TYPE: Description
-    
+
     Raises:
         Exception: Description
     """

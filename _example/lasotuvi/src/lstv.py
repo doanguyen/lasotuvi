@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+(c) 2016 Nguyen Van Dung.
+"""
 from AmDuong import (dichCung, ngayThangNam, ngayThangNamCanChi, nguHanh,
                      nguHanhNapAm, thienCan, timCoThan, timCuc, timHoaLinh,
                      timLuuTru, timPhaToai, timThienKhoi, timThienMa,
