@@ -9,7 +9,6 @@ $(document).ready(function() {
     $("#thangsinh").val(thismonth);
     $("#namsinh").val(thisyear);
 
-
     function dichCung(cungBanDau, soCungDich) {
         cungSauKhiDich = Math.floor(cungBanDau);
         cungSauKhiDich += Math.floor(soCungDich);
@@ -19,7 +18,6 @@ $(document).ready(function() {
             return cungSauKhiDich % 12
         }
     }
-
 
     diaban = $("[cung-id]").click(function() {
         $("[cung-id]").removeClass("xungChieu");
@@ -31,6 +29,10 @@ $(document).ready(function() {
         $("[cung-id=" + cungXungChieu + "]").addClass("xungChieu");
         $("[cung-id=" + cungTamHop1 + "]").addClass("xungChieu");
         $("[cung-id=" + cungTamHop2 + "]").addClass("xungChieu");
+    });
+
+    $("#thienBan").click(function(){
+        $("[cung-id]").removeClass("xungChieu");
     });
 
     function lapLaSo(laso) {
@@ -94,11 +96,11 @@ $(document).ready(function() {
     $("input#laplaso").click(function() {
         $("#laso").removeClass("anlaso");
         $.ajax({
-            url: 'laso.json',
+            url: 'api',
             type: 'GET',
             dataType: 'json',
             data: $('form#lstv').serialize(),
-            success: function(thienBandiaBan) { lapLaSo(thienBandiaBan); },
+            success: function(thienBandiaBan) { lapLaSo(thienBandiaBan); console.log(thienBandiaBan)},
             error: function(thienBandiaBan) { baoLoi(thienBandiaBan); }
         });
     });
