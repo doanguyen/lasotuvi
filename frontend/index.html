@@ -11,6 +11,7 @@
     <script src="frontend/jsrender.min.js"></script>
     <script src="frontend/lstv.js"></script>
     <script src="frontend/zebra_tooltips.js"></script>
+    <script src="frontend/html2canvas.js"></script>
 </head>
 
 <body>
@@ -152,7 +153,8 @@
                         </div>
                     </div>
                     <div class="grid">
-                        <input type="button" class="button" value="Lập lá số" id="laplaso">
+                        <input type="button" class="button primary" value="Lập lá số" id="laplaso">
+                        <input type="button" class="button warning" value="Lưu lá số" id="luulaso">
                     </div>
                 </form>
             </div>
@@ -200,7 +202,6 @@
         </div>
     </div>
 
-
     <script id="cungDiaBan" type="text/x-jsrender">
         <div class="grid cung-top">
             <div class="col col-2 tooltips" title="Địa chi cung {{:cungTen}}">{{:cungTen}}</div>
@@ -215,10 +216,7 @@
         <div class="grid cung-middle">
             <div class="chinhTinh">
                 {{for cungSao}} {{if saoLoai == 1}}
-                <li class="{{:cssSao}}">{{:saoTen}}  
-                    {{if saoDacTinh !== null}}
-                        ({{:saoDacTinh}})
-                    {{/if}}
+                <li class="{{:cssSao}}">{{:saoTen}} {{if saoDacTinh !== null}} ({{:saoDacTinh}}) {{/if}}
                 </li>
                 {{/if}} {{/for}}
             </div>
@@ -228,10 +226,7 @@
                     {{for cungSao}} {{if vongTrangSinh === 0 && saoLoai !==1 && saoLoai
                     < 10}} <div class="grid">
                         <div class="col {{:cssSao}}">
-                            {{:saoTen}}
-                            {{if saoDacTinh !== null}}
-                                ({{:saoDacTinh}})
-                            {{/if}}
+                            {{:saoTen}} {{if saoDacTinh !== null}} ({{:saoDacTinh}}) {{/if}}
                         </div>
                 </div>
                 {{/if}} {{/for}}
@@ -240,10 +235,7 @@
                 {{for cungSao}} {{if vongTrangSinh === 0 && saoLoai !==1 && saoLoai > 10}}
                 <div class="grid">
                     <div class="{{:cssSao}}">
-                        {{:saoTen}}
-                        {{if saoDacTinh !== null}}
-                           ({{:saoDacTinh}})
-                        {{/if}}
+                        {{:saoTen}} {{if saoDacTinh !== null}} ({{:saoDacTinh}}) {{/if}}
                     </div>
                 </div>
                 {{/if}} {{/for}}

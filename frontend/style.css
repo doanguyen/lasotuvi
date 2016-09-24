@@ -360,7 +360,7 @@ select {
     -webkit-tap-highlight-color: transparent;
 }
 
-.button:hover {
+input.primary:hover {
     background-color: #1678c2;
     color: #FFF;
     text-shadow: none;
@@ -370,12 +370,16 @@ select {
     width: 100px;
 }
 
-.button,
-.primary.buttons .button {
+input.warning {
+    background-color: #f0ad4e;
+    color: #FFF;
+    text-shadow: none;
+}
+
+input.primary {
     background-color: #2185D0;
     color: #FFF;
     text-shadow: none;
-    background-image: none;
 }
 
 
