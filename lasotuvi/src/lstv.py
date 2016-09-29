@@ -5,7 +5,7 @@
 from AmDuong import (dichCung, ngayThangNam, ngayThangNamCanChi, nguHanh,
                      nguHanhNapAm, thienCan, timCoThan, timCuc, timHoaLinh,
                      timLuuTru, timPhaToai, timThienKhoi, timThienMa,
-                     timThienQuanThienPhuc, timTrangSinh, timTriet, timTuVi)
+                     timThienQuanThienPhuc, timTrangSinh, timTriet, timTuVi, diaChi)
 from Sao import (saoAnQuang, saoBachHo, saoBacSy, saoBatToa, saoBenh,
                  saoBenhPhu, saoCoThan, saoCuMon, saoDaiHao, saoDaLa,
                  saoDaoHoa, saoDauQuan, saoDeVuong, saoDiaGiai, saoDiaKhong,
@@ -42,6 +42,7 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     diaBan = diaBan(tt, gioSinh)
 
     amDuongNamSinh = thienCan[canNam]["amDuong"]
+    amDuongChiNamSinh = diaChi[chiNam]["amDuong"]
 
     # Bản Mệnh chính là Ngũ hành nạp âm của năm sinh
     banMenh = nguHanhNapAm(canNam, chiNam)
@@ -54,7 +55,7 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     # Theo sách Số tử vi dưới góc nhìn khoa học
     # Dương Nam - Âm Nữ theo chiều thuận
     # Âm Nam - Dương Nữ theo chiều nghịch
-    diaBan = diaBan.nhapDaiHan(cucSo, gioiTinh)
+    diaBan = diaBan.nhapDaiHan(cucSo, gioiTinh * amDuongChiNamSinh)
 
     # Nhập tiểu hạn
     khoiHan = dichCung(11, -3 * (chiNam - 1))

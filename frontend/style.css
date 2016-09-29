@@ -176,7 +176,7 @@ li {
 }
 
 .hanhKim {
-    color: #FF6F00;
+    color: #9E9E9E;
 }
 
 .hanhMoc {
@@ -184,21 +184,22 @@ li {
 }
 
 .hanhThuy {
-    color: #4682b4;
+    color: #000100;
 }
 
 .hanhHoa {
-    color: #F44336;
+    color: #a71a14;
 }
 
 .hanhTho {
-    color: #3E2723;
+    color: #e6bd37;
 }
 
 .chinhTinh {
     min-height: 35px;
     padding-bottom: 3px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .cungChu {
@@ -218,6 +219,7 @@ li {
 .diaCung {
     width: 200px;
     height: 240px;
+    background-color: #fbfbfb;
 }
 
 .thienBan {

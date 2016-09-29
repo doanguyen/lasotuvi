@@ -150,9 +150,17 @@ class diaBan(object):
         return self
 
     def nhapDaiHan(self, cucSo, gioiTinh):
+        """Nhap dai han
+        
+        Args:
+            cucSo (TYPE): Description
+            gioiTinh (TYPE): Description
+        
+        Returns:
+            TYPE: Description
+        """
         for cung in self.thapNhiCung:
             khoangCach = khoangCachCung(cung.cungSo, self.cungMenh, gioiTinh)
-            # print cung.__dict__
             cung.daiHan(cucSo + khoangCach * 10)
         return self
 
