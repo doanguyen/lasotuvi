@@ -158,6 +158,7 @@ code {
     margin-right: auto;
     margin-left: auto;
     overflow: hidden;
+    background-image: url('texture.jpg');
 }
 
 .cung-top,
@@ -219,7 +220,7 @@ li {
 .diaCung {
     width: 200px;
     height: 240px;
-    background-color: #fbfbfb;
+    /*background-color: #f3f6ef;*/
 }
 
 .thienBan {
@@ -391,21 +392,23 @@ input.primary {
 
 .phuTinh .saotot {
     width: 46%;
-    line-height: 1.2em;
+    line-height: 1.3em;
     text-align: left;
     display: inline-block;
     white-space: nowrap;
     vertical-align: top;
     max-height: 120px;
+    font-weight: bold;
 }
 
 .phuTinh .saoxau {
     width: 46%;
-    line-height: 1.2em;
+    line-height: 1.3em;
     display: inline-block;
     text-align: right;
     white-space: nowrap;
     vertical-align: top;
+    font-weight: bold;
 }
 
 .blocks {
