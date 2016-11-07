@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var uploadLaso = "/upload";
     var d = new Date();
     var thismonth = d.getMonth() + 1;
     var today = d.getDate();
@@ -16,20 +17,20 @@ $(document).ready(function () {
             return cungSauKhiDich % 12;
         }
     }
-    diaban = $("[cung-id]").click(function () {
-        $("[cung-id]").removeClass("xungChieu");
-        cungid = $(this).attr('cung-id');
-        cungXungChieu = dichCung(cungid, 6);
-        cungTamHop1 = dichCung(cungid, 4);
-        cungTamHop2 = dichCung(cungid, 8);
-        $(this).addClass("xungChieu");
-        $("[cung-id=" + cungXungChieu + "]").addClass("xungChieu");
-        $("[cung-id=" + cungTamHop1 + "]").addClass("xungChieu");
-        $("[cung-id=" + cungTamHop2 + "]").addClass("xungChieu");
-    });
-    $("#thienBan").click(function () {
-        $("[cung-id]").removeClass("xungChieu");
-    });
+    // diaban = $("[cung-id]").click(function () {
+    //     $("[cung-id]").removeClass("xungChieu");
+    //     cungid = $(this).attr('cung-id');
+    //     cungXungChieu = dichCung(cungid, 6);
+    //     cungTamHop1 = dichCung(cungid, 4);
+    //     cungTamHop2 = dichCung(cungid, 8);
+    //     $(this).addClass("xungChieu");
+    //     $("[cung-id=" + cungXungChieu + "]").addClass("xungChieu");
+    //     $("[cung-id=" + cungTamHop1 + "]").addClass("xungChieu");
+    //     $("[cung-id=" + cungTamHop2 + "]").addClass("xungChieu");
+    // });
+    // $("#thienBan").click(function () {
+    //     $("[cung-id]").removeClass("xungChieu");
+    // });
     function lapLaSo(laso) {
         try {
             $.templates({
@@ -76,6 +77,7 @@ $(document).ready(function () {
     }
     $("input#laplaso").click(function () {
         $("#laso").removeClass("anlaso");
+        $("#urlLaso").val("");
         $.ajax({
             url: 'api',
             type: 'GET',
@@ -104,13 +106,51 @@ $(document).ready(function () {
                 // ctx.webkitImageSmoothingEnabled = false;
                 // ctx.mozImageSmoothingEnabled = false;
                 // ctx.imageSmoothingEnabled = false;
+                $("#urlLaso").val("");
                 var a = document.createElement('a');
                 a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
                 a.download = 'laso.jpg';
                 a.click();
             },
-            width: 802,
-            height: 960
+            width: 805,
+            height: 965
+        });
+    });
+
+    $("input#uploadLaso").click(function (){
+        if ($("#laso").is(':hidden')) {
+            alert("Hãy an lá số trước khi upload!");
+            return false;
+        }
+
+        html2canvas(document.getElementById("laso"),{
+            background: '#FFFFFF',
+            onrendered: function (canvas){
+                canvasData = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+                $.ajax({
+                    url: uploadLaso,
+                    type: "POST",
+                    data: {
+                        image: canvasData,
+                        hoten: $("#hoten").val(),
+                        ngaysinh: $("#ngaysinh").val(),
+                        thangsinh: $("#thangsinh").val(),
+                        namsinh: $("#namsinh").val()
+                    },
+                    dataType: "json",
+                    success: function (response){
+                        if (response.error == false){
+                            $("#urlLaso").val(response.message);
+                            alert("Upload thành công.");
+                        }else{
+                            alert("Có lỗi, không lưu được lá số trên server.");
+                        }
+
+                    }
+                }).fail(function(){
+                    alert("Có lỗi, không lưu được lá số trên server.");
+                });
+            }
         });
     });
     function download(strData, strFileName, strMimeType) {

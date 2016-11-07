@@ -11,7 +11,8 @@ from src import lstv
 import json
 import os
 from settings import BASE_DIR
-
+from django.views.decorators.csrf import csrf_exempt
+import base64
 
 def app(request):
     now = datetime.datetime.now()
@@ -31,8 +32,8 @@ def app(request):
         'thienBan': thienBan,
         'thapNhiCung': db.thapNhiCung
     }
-    myreturn = (json.dumps(laso, default=lambda o: o.__dict__))
-    return HttpResponse(myreturn, content_type="application/json")
+    myReturn = (json.dumps(laso, default=lambda o: o.__dict__))
+    return HttpResponse(myReturn, content_type="application/json")
 
 
 def index(request):
@@ -41,7 +42,37 @@ def index(request):
         html = indexfile.read()
     return HttpResponse(html)
 
+@csrf_exempt
+def upload(request):
+    imageFolder = os.path.join(BASE_DIR, 'thuvienlaso')
+    try:
+        hoTen = request.POST.get('hoten')
+        ngaySinh = request.POST.get('ngaysinh')
+        thangSinh = request.POST.get('thangsinh')
+        namSinh = request.POST.get('namsinh')
+
+        if not hoTen:
+            hoTen = 'Noname'
+
+        fileName = '-'.join([hoTen, ngaySinh, thangSinh, namSinh]) + '.jpg'
+
+        fullPath = os.path.join(imageFolder, fileName)
+
+        imagedata = request.POST.get('image').replace('data:image/octet-stream;base64,', '').replace(' ', '+')
+        imagedata = base64.b64decode(imagedata)
+        with open(fullPath, 'w') as imagefile:
+            imagefile.write(imagedata)
+        
+        currentPath = '/'.join(['http:/', request.META['HTTP_HOST'], 'frontend', fileName])
+
+        myResponse = json.dumps({'error' : False, 'message' : currentPath})
+    except:
+        myResponse = json.dumps({'error' : True, 'message' : "Không lưu được lá số"})
+    
+    return HttpResponse(myResponse, content_type="application/json")
+
 urlpatterns = [
     url(r'^api', app),
     url(r'^$', index),
+    url(r'^upload', upload)
 ]
