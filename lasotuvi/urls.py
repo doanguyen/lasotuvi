@@ -63,7 +63,7 @@ def upload(request):
         with open(fullPath, 'w') as imagefile:
             imagefile.write(imagedata)
         
-        currentPath = '/'.join(['http:/', request.META['HTTP_HOST'], 'frontend', fileName])
+        currentPath = '/'.join(['http:/', request.META['HTTP_HOST'], 'thuvienlaso', fileName])
 
         myResponse = json.dumps({'error' : False, 'message' : currentPath})
     except:
