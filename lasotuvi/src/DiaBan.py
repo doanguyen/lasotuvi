@@ -151,11 +151,11 @@ class diaBan(object):
 
     def nhapDaiHan(self, cucSo, gioiTinh):
         """Nhap dai han
-        
+
         Args:
             cucSo (TYPE): Description
             gioiTinh (TYPE): Description
-        
+
         Returns:
             TYPE: Description
         """

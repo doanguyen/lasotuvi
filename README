@@ -1,5 +1,9 @@
-## Lap la so tu vi
+# Mã nguồn mở an sao lá số tử vi
 
-[ ] Hiển thị tiểu hạn
-[ ] Thành lập thuật toán tính điểm lá số tử vi
-[ ] Lập bản đồ những ngày, tháng, giờ sinh tốt nhất
+*Sử dụng*
+
+```
+python manager.py runserver
+```
+
+

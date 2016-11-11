@@ -11,16 +11,16 @@ def jdFromDate(dd, mm, yy):
     '''def jdFromDate(dd, mm, yy): Compute the (integral) Julian day number of
     day dd/mm/yyyy, i.e., the number of days between 1/1/4713 BC
     (Julian calendar) and dd/mm/yyyy.'''
-    a = int((14 - mm) / 12.)
+    a = math.floor((14 - mm) / 12.)
     y = yy + 4800 - a
     m = mm + 12 * a - 3
-    jd = dd + int((153 * m + 2) / 5.) \
-        + 365 * y + int(y / 4.) - int(y / 100.) \
-        + int(y / 400.) - 32045
+    jd = dd + math.floor((153 * m + 2) / 5.) \
+        + 365 * y + math.floor(y / 4.) - math.floor(y / 100.) \
+        + math.floor(y / 400.) - 32045
     if (jd < 2299161):
-        jd = dd + int((153 * m + 2) / 5.) \
-            + 365 * y + int(y / 4.) - 32083
-    return jd
+        jd = dd + math.floor((153 * m + 2) / 5.) \
+            + 365 * y + math.floor(y / 4.) - 32083
+    return int(jd)
 
 
 def jdToDate(jd):
@@ -29,18 +29,18 @@ def jdToDate(jd):
     if (jd > 2299160):
         # After 5/10/1582, Gregorian calendar
         a = jd + 32044
-        b = int((4 * a + 3) / 146097.)
-        c = a - int((b * 146097) / 4.)
+        b = math.floor((4 * a + 3) / 146097.)
+        c = a - math.floor((b * 146097) / 4.)
     else:
         b = 0
         c = jd + 32082
-    d = int((4 * c + 3) / 1461.)
-    e = c - int((1461 * d) / 4.)
-    m = int((5 * e + 2) / 153.)
-    day = e - int((153 * m + 2) / 5.) + 1
-    month = m + 3 - 12 * int(m / 10.)
-    year = b * 100 + d - 4800 + int(m / 10.)
-    return [day, month, year]
+    d = math.floor((4 * c + 3) / 1461.)
+    e = c - math.floor((1461 * d) / 4.)
+    m = math.floor((5 * e + 2) / 153.)
+    day = e - math.floor((153 * m + 2) / 5.) + 1
+    month = m + 3 - 12 * math.floor(m / 10.)
+    year = b * 100 + d - 4800 + math.floor(m / 10.)
+    return map(int, [day, month, year])
 
 
 def NewMoon(k):
@@ -123,7 +123,7 @@ The time zone if the time difference between local time, UTC: 7.0 for UTC+7:00
 The function returns a number between 0 and 11. From the day after March
 equinox and the 1st major term after March equinox, 0 is returned.
 After that, return 1, 2, 3 ...'''
-    return int(
+    return math.floor(
         SunLongitude(dayNumber - 0.5 - timeZone / 24.) / math.pi * 6)
 
 
@@ -140,14 +140,14 @@ def getSunLongitude(jdn, timeZone):
     L = L - 0.00569 - 0.00478 * math.sin(omega * dr)
     L = L*dr
     L = L - math.pi*2*(math.floor(L/(math.pi*2)))
-    return int(L/math.pi*6)
+    return math.floor(L/math.pi*6)
 
 
 def getNewMoonDay(k, timeZone):
     '''def getNewMoonDay(k, timeZone): Compute the day of the k-th new moon
     in the given time zone. The time zone if the time difference between local
     time and UTC: 7.0 for UTC+7:00.'''
-    return int(NewMoon(k) + 0.5 + timeZone / 24.)
+    return math.floor(NewMoon(k) + 0.5 + timeZone / 24.)
 
 
 def getLunarMonth11(yy, timeZone):
@@ -156,7 +156,7 @@ def getLunarMonth11(yy, timeZone):
     # off = jdFromDate(31, 12, yy) \
     #            - 2415021.076998695
     off = jdFromDate(31, 12, yy) - 2415021.
-    k = int(off / 29.530588853)
+    k = math.floor(off / 29.530588853)
     nm = getNewMoonDay(k, timeZone)
     sunLong = getSunLongitude(nm, timeZone)
     # sun longitude at local midnight
@@ -164,11 +164,11 @@ def getLunarMonth11(yy, timeZone):
         nm = getNewMoonDay(k - 1, timeZone)
     return nm
 
-# print getLunarMonth11(1992, 7)
+
 def getLeapMonthOffset(a11, timeZone):
     '''def getLeapMonthOffset(a11, timeZone): Find the index of the leap month
     after the month starting on the day a11.'''
-    k = int((a11 - 2415021.076998695) / 29.530588853 + 0.5)
+    k = math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5)
     last = 0
     i = 1  # start with month following lunar month 11
     arc = getSunLongitude(
@@ -188,7 +188,7 @@ def S2L(dd, mm, yy, timeZone=7):
     '''def S2L(dd, mm, yy, timeZone = 7): Convert solar date dd/mm/yyyy to
     the corresponding lunar date.'''
     dayNumber = jdFromDate(dd, mm, yy)
-    k = int((dayNumber - 2415021.076998695) / 29.530588853)
+    k = math.floor((dayNumber - 2415021.076998695) / 29.530588853)
     monthStart = getNewMoonDay(k + 1, timeZone)
     if (monthStart > dayNumber):
         monthStart = getNewMoonDay(k, timeZone)
@@ -202,7 +202,7 @@ def S2L(dd, mm, yy, timeZone=7):
         lunarYear = yy + 1
         b11 = getLunarMonth11(yy + 1, timeZone)
     lunarDay = dayNumber - monthStart + 1
-    diff = int((monthStart - a11) / 29.)
+    diff = math.floor((monthStart - a11) / 29.)
 
     lunarLeap = 0
     lunarMonth = diff + 11
@@ -219,7 +219,7 @@ def S2L(dd, mm, yy, timeZone=7):
         lunarYear -= 1
     # print [lunarDay, lunarMonth, lunarYear, lunarLeap]
     return \
-        [lunarDay, lunarMonth, lunarYear, lunarLeap]
+        map(int, [lunarDay, lunarMonth, lunarYear, lunarLeap])
 
 
 def L2S(lunarD, lunarM, lunarY, lunarLeap, tZ=7):
@@ -231,7 +231,7 @@ def L2S(lunarD, lunarM, lunarY, lunarLeap, tZ=7):
     else:
         a11 = getLunarMonth11(lunarY, tZ)
         b11 = getLunarMonth11(lunarY + 1, tZ)
-    k = int(0.5 +
+    k = math.floor(0.5 +
             (a11 - 2415021.076998695) / 29.530588853)
     off = lunarM - 11
     if (off < 0):

@@ -69,7 +69,7 @@ class Sao(object):
 # Tử vi tinh hệ
 saoTuVi = Sao(1, u"Tử vi", "O", 1, u"Đế tinh", 1, 0)
 saoLiemTrinh = Sao(2, u"Liêm trinh", "H", 1, u"Bắc đẩu tinh", 1, 0)
-saoThienDong = Sao(3, "Thiên đồng", "H", 1, "Bắc đẩu tinh", 1, 0)
+saoThienDong = Sao(3, "Thiên đồng", "T", 1, "Bắc đẩu tinh", 1, 0)
 saoVuKhuc = Sao(4, "Vũ khúc", "K", 1, "Bắc đẩu tinh", -1, 0)
 saoThaiDuong = Sao(5, "Thái Dương", "H", 1, "Nam đẩu tinh", 1, 0)
 saoThienCo = Sao(6, "Thiên cơ", "M", 1, "Nam đẩu tinh", -1, 0)

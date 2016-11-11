@@ -122,7 +122,7 @@ diaChi = [
         "tenHanh": "T",
         "menhChu": "Tham lang",
         "thanChu": "Linh tinh",
-        "amDuong": 1        
+        "amDuong": 1
     },
     {
         "id": 2,
@@ -131,7 +131,6 @@ diaChi = [
         "menhChu": "Cự môn",
         "thanChu": "Thiên tướng",
         "amDuong": -1
-        
     },
     {
         "id": 3,
@@ -233,14 +232,14 @@ def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
         Exception: Description
     """
     thangNhuan = 0
-    if nnnn > 1000 and nnnn < 3000 and nn > 0 and \
+    # if nnnn > 1000 and nnnn < 3000 and nn > 0 and \
+    if nn > 0 and \
        nn < 32 and tt < 13 and tt > 0:
         if duongLich is True:
             [nn, tt, nnnn, thangNhuan] = S2L(nn, tt, nnnn, timeZone=timeZone)
         return [nn, tt, nnnn, thangNhuan]
     else:
-        raise Exception("Ngày, tháng, năm không chính xác. \
- Số năm phải nhỏ hơn 3000 và lớn hơn 1000")
+        raise Exception("Ngày, tháng, năm không chính xác.")
 
 
 def canChiNgay(nn, tt, nnnn, duongLich=True, timeZone=7, thangNhuan=False):

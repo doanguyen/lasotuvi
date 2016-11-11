@@ -5,6 +5,7 @@
 from AmDuong import (canChiNgay, diaChi, ngayThangNam, ngayThangNamCanChi,
                      nguHanh, nguHanhNapAm, thienCan, timCuc, sinhKhac)
 import time
+from lichamduong import jdFromDate
 
 
 class lapThienBan(object):
@@ -13,7 +14,13 @@ class lapThienBan(object):
         super(lapThienBan, self).__init__()
         self.gioiTinh = 1 if gioiTinh == 1 else -1
         self.namNu = "Nam" if gioiTinh == 1 else "Nữ"
-        self.gioSinh = diaChi[gioSinh]['tenChi']
+
+        chiGioSinh = diaChi[gioSinh]['tenChi']
+        canGioSinh = ((jdFromDate(nn, tt, nnnn)-1) * 2 % 10 + gioSinh)
+        if canGioSinh == 0:
+            canGioSinh = 10
+        self.gioSinh = "%s %s" % (thienCan[canGioSinh]['tenCan'], chiGioSinh)
+
         self.timeZone = timeZone
         self.today = time.strftime("%d/%m/%Y")
         self.ngayDuong, self.thangDuong, self.namDuong, self.ten = \

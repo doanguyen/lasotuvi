@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "/usr/bin/python2.7",
+        // Whether to lint Python files using pylint.
+    "python.linting.pylintEnabled": false,
+
+    // Whether to lint Python files using pep8
+    "python.linting.pep8Enabled": true
+}

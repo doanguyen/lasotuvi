@@ -184,42 +184,43 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     diaBan.nhapSao(viTriTrucPhu, saoTrucPhu)
 
     #  Vòng ngũ hành cục Tràng sinh
-    # *LƯU Ý* Theo cụ Thiên Lương: Nam -> Thuận, Nữ -> Nghịch
+    # !!! Đã sửa !!! *LƯU Ý Phần này đã sửa* Theo cụ Thiên Lương: Nam -> Thuận, Nữ -> Nghịch (Không phù hợp)
+    # **ISSUE 2**: Dương nam, Âm nữ theo chiều thuận, Âm nam Dương nữ theo chiều nghịch 
 
     viTriTrangSinh = timTrangSinh(cucSo)
     diaBan.nhapSao(viTriTrangSinh, saoTrangSinh)
 
-    viTriMocDuc = dichCung(viTriTrangSinh, gioiTinh * 1)
+    viTriMocDuc = dichCung(viTriTrangSinh, amDuongNamNu * 1)
     diaBan.nhapSao(viTriMocDuc, saoMocDuc)
 
-    viTriQuanDoi = dichCung(viTriTrangSinh, gioiTinh * 2)
+    viTriQuanDoi = dichCung(viTriTrangSinh, amDuongNamNu * 2)
     diaBan.nhapSao(viTriQuanDoi, saoQuanDoi)
 
-    viTriLamQuan = dichCung(viTriTrangSinh, gioiTinh * 3)
+    viTriLamQuan = dichCung(viTriTrangSinh, amDuongNamNu * 3)
     diaBan.nhapSao(viTriLamQuan, saoLamQuan)
 
-    viTriDeVuong = dichCung(viTriTrangSinh, gioiTinh * 4)
+    viTriDeVuong = dichCung(viTriTrangSinh, amDuongNamNu * 4)
     diaBan.nhapSao(viTriDeVuong, saoDeVuong)
 
-    viTriSuy = dichCung(viTriTrangSinh, gioiTinh * 5)
+    viTriSuy = dichCung(viTriTrangSinh, amDuongNamNu * 5)
     diaBan.nhapSao(viTriSuy, saoSuy)
 
-    viTriBenh = dichCung(viTriTrangSinh, gioiTinh * 6)
+    viTriBenh = dichCung(viTriTrangSinh, amDuongNamNu * 6)
     diaBan.nhapSao(viTriBenh, saoBenh)
 
-    viTriTu = dichCung(viTriTrangSinh, gioiTinh * 7)
+    viTriTu = dichCung(viTriTrangSinh, amDuongNamNu * 7)
     diaBan.nhapSao(viTriTu, saoTu)
 
-    viTriMo = dichCung(viTriTrangSinh, gioiTinh * 8)
+    viTriMo = dichCung(viTriTrangSinh, amDuongNamNu * 8)
     diaBan.nhapSao(viTriMo, saoMo)
 
-    viTriTuyet = dichCung(viTriTrangSinh, gioiTinh * 9)
+    viTriTuyet = dichCung(viTriTrangSinh, amDuongNamNu * 9)
     diaBan.nhapSao(viTriTuyet, saoTuyet)
 
-    viTriThai = dichCung(viTriTrangSinh, gioiTinh * (-1))
+    viTriThai = dichCung(viTriTrangSinh, amDuongNamNu * (-1))
     diaBan.nhapSao(viTriThai, saoThai)
 
-    viTriDuong = dichCung(viTriTrangSinh, gioiTinh * (-2))
+    viTriDuong = dichCung(viTriTrangSinh, amDuongNamNu * (-2))
     diaBan.nhapSao(viTriDuong, saoDuong)
 
     # An sao đôi
@@ -325,7 +326,7 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     viTriCoThan = timCoThan(chiNam)
     diaBan.nhapSao(viTriCoThan, saoCoThan)
 
-    viTriQuaTu = dichCung(viTriCoThan, 4)
+    viTriQuaTu = dichCung(viTriCoThan, -4)
     diaBan.nhapSao(viTriQuaTu, saoQuaTu)
 
     viTriVanTinh = dichCung(viTriKinhDuong, 2)
