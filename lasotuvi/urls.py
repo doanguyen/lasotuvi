@@ -14,6 +14,7 @@ from settings import BASE_DIR
 from django.views.decorators.csrf import csrf_exempt
 import base64
 
+
 def app(request):
     now = datetime.datetime.now()
     hoTen = unicode(request.GET.get('hoten'))
@@ -42,6 +43,7 @@ def index(request):
         html = indexfile.read()
     return HttpResponse(html)
 
+
 @csrf_exempt
 def upload(request):
     imageFolder = os.path.join(BASE_DIR, 'thuvienlaso')
@@ -58,17 +60,21 @@ def upload(request):
 
         fullPath = os.path.join(imageFolder, fileName)
 
-        imagedata = request.POST.get('image').replace('data:image/octet-stream;base64,', '').replace(' ', '+')
+        imagedata = request.POST.get('image').replace(
+            'data:image/octet-stream;base64,', '').replace(' ', '+')
         imagedata = base64.b64decode(imagedata)
         with open(fullPath, 'w') as imagefile:
             imagefile.write(imagedata)
-        
-        currentPath = '/'.join(['http:/', request.META['HTTP_HOST'], 'thuvienlaso', fileName])
 
-        myResponse = json.dumps({'error' : False, 'message' : currentPath})
+        currentPath = '/'.join(['http:/',
+                                request.META['HTTP_HOST'], 'thuvienlaso',
+                                fileName])
+
+        myResponse = json.dumps({'error': False, 'message': currentPath})
     except:
-        myResponse = json.dumps({'error' : True, 'message' : "Không lưu được lá số"})
-    
+        myResponse = json.dumps(
+            {'error': True, 'message': "Không lưu được lá số"})
+
     return HttpResponse(myResponse, content_type="application/json")
 
 urlpatterns = [
