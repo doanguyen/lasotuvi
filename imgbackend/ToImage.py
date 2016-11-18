@@ -7,8 +7,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 base = Image.open(os.path.join(BASE_DIR, 'imgbackend', 'background.png'))
 
 # get a font
-fontChinhTinh = ImageFont.truetype('imgbackend/noto-serif/NotoSerif-Bold.ttf', 25)
-fontPhuTinh = ImageFont.truetype('imgbackend/noto-serif/NotoSerif-Bold.ttf', 25)
+fontChinhTinh = ImageFont.truetype('imgbackend/noto-serif/NotoSerif-Bold.ttf', 24)
+fontPhuTinh = ImageFont.truetype('imgbackend/noto-serif/NotoSerif-Bold.ttf', 20)
+fontCungTen = ImageFont.truetype('imgbackend/noto-serif/NotoSerif-Bold.ttf', 20)
 
 # màu ngũ hành
 hanhKim = "#9E9E9E"
@@ -40,13 +41,30 @@ draw.line([0, y/2-2, x/4-2, y/2-2], fill=(0, 0, 0, 100), width=width)
 draw.line([3*x/4-2, y/2-2, x-2, y/2-2], fill=(0, 0, 0, 100), width=width)
 # Hoàn thành phần khung
 
-draw.text((5, (x/40-2)/2), u"Tý", font=fontPhuTinh, fill=(0, 0, 0))
+draw.text((5, 5), u"Tý", font=fontPhuTinh, fill=(0, 0, 0))
+draw.text((295-fontPhuTinh.getsize(u"35")[0], 5), u"35", font=fontPhuTinh, fill=(0, 0, 0))
 msg = u"ĐIỀN TRẠCH"
 w, h = fontChinhTinh.getsize(msg)
-draw.point((x/10, (y/40-2)/2), fill=hanhHoa)
-draw.multiline_text((x/8-w/2, (y/40-2)/2), msg, font=fontChinhTinh, fill=cungTen, align="center")
-draw.multiline_text((x/8-w/2, (y/40-2)/2+h), u"THIÊN CƠ (V)", font=fontChinhTinh, fill=hanhMoc, align="center")
-draw.multiline_text((x/8-w/2, y/2), u"QUAN ĐỚI\nVai4", font=fontChinhTinh, fill=hanhTho, align="center")
+draw.text((x/8-w/2, 5), msg, font=fontCungTen, fill=cungTen)
+
+# Chính tinh
+draw.text((x/8-w/2-20, 30), u"THIÊN CƠ (V)", font=fontChinhTinh, fill=hanhMoc)
+draw.text((x/8-w/2, 60), u"TỬ VI (V)", font=fontChinhTinh, fill=hanhTho)
+
+# Phụ Tinh
+draw.text((10, 100), u"Ân Quang", font=fontPhuTinh, fill=hanhMoc)
+draw.text((10, 125), u"Thiên Đức", font=fontPhuTinh, fill=hanhHoa)
+draw.text((10, 150), u"Thiên Y", font=fontPhuTinh, fill=hanhThuy)
+draw.text((10, 175), u"Hỏa Tinh (Đ)", font=fontPhuTinh, fill=hanhHoa)
+draw.text((10, 200), u"Văn Xương", font=fontPhuTinh, fill=hanhKim)
+draw.text((10, 225), u"Bát Tọa", font=fontPhuTinh, fill=hanhMoc)
+draw.text((10, 250), u"Lộc Tồn", font=fontPhuTinh, fill=hanhTho)
+
+draw.text((290-fontPhuTinh.getsize(u"Lộc Tồn")[0], 100), u"Lộc Tồn", font=fontPhuTinh, fill=hanhTho)
+draw.text((290-fontPhuTinh.getsize(u"Văn Xương (M)")[0], 125), u"Văn Xương (M)", font=fontPhuTinh, fill=hanhKim)
+
+# Truong sinh
+draw.text((x/8-fontPhuTinh.getsize(u"Tuyệt")[0]/2, 330), u"Tuyệt", font=fontPhuTinh, fill=hanhKim)
 
 base.save('imgbackend/test.png', 'PNG')
 print "fine"
