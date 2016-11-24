@@ -86,4 +86,14 @@ class nhapSao():
         .         .
         c. . . . .d
         """
+        self.anChinhTinh()
+        self.anPhuTinh()
+        self.anDaiHan()
+        self.anTieuHan()
+        self.anDiaChiCung()
+        self.anNguHanhCung()
+        self.anVongTrangSinh()
+        return self
+
+    def nhapThienBan(thienBan):
         pass
