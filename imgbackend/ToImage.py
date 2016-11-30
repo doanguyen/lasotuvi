@@ -19,7 +19,7 @@ db = lstv.lapDiaBan(diaBan, ngaySinh, thangSinh, namSinh,
 thienBan = lapThienBan(ngaySinh, thangSinh, namSinh,
                        gioSinh, gioiTinh, hoTen, db)
 thapNhiCung = db.thapNhiCung
-cung = (thapNhiCung[1])
+cung = (thapNhiCung[2])
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,6 +35,14 @@ fontCungTen = ImageFont.truetype(os.path.join(
     BASE_DIR, 'imgbackend/noto-serif/NotoSerif-Bold.ttf'), 20)
 
 # màu ngũ hành
+mauSac = {
+    'hanhKim': "#9E9E9E",
+    'hanhThuy': "#000100",
+    'hanhMoc': "#4CAF50",
+    'hanhHoa': "#a71a14",
+    'hanhTho': "#e6bd37",
+    'cungTen': "#2196f3"
+}
 hanhKim = "#9E9E9E"
 hanhThuy = "#000100"
 hanhMoc = "#4CAF50"
@@ -130,24 +138,86 @@ def nhapThienBan(self, thienBan):
     pass
 
 
-def nhapCungChu(draw, tenCungChu, a, b, c, d):
+def nhapCungChu(draw, cung, a, b, c, d):
+    tenCungChu = cung.cungChu
+    if (cung.cungThan is True):
+        tenCungChu += " ({})".format("Thân")
     tenCungChu = unicode(tenCungChu, 'utf-8').upper()
-    x = (a[0] + b[0])/2 - fontChinhTinh.getsize(tenCungChu)[0] / 2
+    x = (a[0] + b[0])/2 - fontCungTen.getsize(tenCungChu)[0] / 2
     y = a[1] + 5
     draw.text((x, y), tenCungChu, font=fontCungTen, fill=cungTen)
+
+
+def nhapChinhTinh(draw, sao, a, b, c, d):
+    for s in sao:
+        if s['saoLoai'] == 1:
+            if s['saoDacTinh'] is not None:
+                s['saoTen'] += "({})".format(s['saoDacTinh'])
+            tenSao = unicode(s['saoTen'], 'utf-8').upper()
+            xViTriChinhTinh = (a[0] + b[0]) / 2 - fontChinhTinh.getsize(tenSao)[0] / 2
+            try:
+                yViTriChinhTinh = yViTriChinhTinh + 30
+            except:
+                yViTriChinhTinh = a[1] + 30
+            draw.text((xViTriChinhTinh, yViTriChinhTinh), tenSao, font=fontChinhTinh, fill=mauSac[s['cssSao']])
     return draw
 
-nhapCungChu(draw, cung.cungChu, (300, 0), (600, 0), (300, 300), (600, 300))
+
+def nhapPhuTinh(draw, sao, a, b, c, d):
+    for s in sao:
+        if s['saoDacTinh'] is not None:
+            s['saoTen'] += "({})".format(s['saoDacTinh'])
+        tenSao = unicode(s['saoTen'], 'utf-8')
+        if (s['saoLoai'] < 10 and s['vongTrangSinh'] == 0 and s['saoLoai'] != 1):
+            xSaoTot = a[0] + 10
+            try:
+                ySaoTot = ySaoTot + 25
+            except:
+                ySaoTot = a[1] + 100
+            draw.text((xSaoTot, ySaoTot), tenSao, font=fontPhuTinh, fill=mauSac[s['cssSao']])
+        if (s['saoLoai'] > 10 and s['vongTrangSinh'] == 0 and s['saoLoai'] != 1):
+            xSaoXau = b[0] - 10 - fontPhuTinh.getsize(tenSao)[0]
+            try:
+                ySaoXau = ySaoXau + 25
+            except:
+                ySaoXau = a[1] + 100
+            draw.text((xSaoXau, ySaoXau), tenSao, font=fontPhuTinh, fill=mauSac[s['cssSao']])
 
 
-def anChinhTinh(draw, saoChinhTinh):
-    for chinhTinh in saoChinhTinh:
-        xViTriChinhTinh = (a[0] + b[0]) / 2
-        try:
-            yViTriChinhTinh = yViTriChinhTinh + 30
-        except:
-            yViTriChinhTinh = a[1] + 30
+def nhapVongTrangSinh(draw, sao, a, b, c, d):
+    for s in sao:
+        if s['vongTrangSinh'] == 1:
+            tenSao = unicode(s['saoTen'], 'utf-8').upper()
+            xViTriVongTrangSinh = (a[0] + b[0]) / 2 - fontPhuTinh.getsize(tenSao)[0] / 2
+            yViTriVongTrangSinh = a[1] + 330
+            draw.text((xViTriVongTrangSinh, yViTriVongTrangSinh), tenSao, font=fontPhuTinh, fill=mauSac[s['cssSao']])
 
+
+def nhapDaiHan(draw, cung, a, b, c, d):
+    xDaiHan = b[0] - 30
+    yDaiHan = a[1] + 5
+    draw.text((xDaiHan, yDaiHan), str(cung.cungDaiHan), font=fontCungTen, fill=(0, 0, 0))
+
+
+def nhapHanhCung(draw, cung, a, b, c, d):
+    xHanhCung = a[0] + 5
+    yHanhCung = a[1] + 5
+    draw.text((xHanhCung, yHanhCung), unicode(cung.hanhCung, 'utf-8'), font=fontCungTen, fill=(0, 0, 0))
+
+
+def nhapTieuHan(draw, cung, a, b, c, d):
+    xTieuHan = a[0] + 5
+    yTieuHan = a[1] + 330
+    draw.text((xTieuHan, yTieuHan), unicode(cung.cungTieuHan, 'utf-8'), font=fontCungTen, fill=(0, 0, 0))
+
+
+nhapCungChu(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
+nhapChinhTinh(draw, cung.cungSao, (300, 0), (600, 0), (300, 300), (600, 300))
+nhapPhuTinh(draw, cung.cungSao, (300, 0), (600, 0), (300, 300), (600, 300))
+nhapVongTrangSinh(draw, cung.cungSao, (300, 0), (600, 0), (300, 300), (600, 300))
+nhapDaiHan(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
+nhapHanhCung(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
+nhapTieuHan(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
 
 base.save(os.path.join(BASE_DIR, 'imgbackend/test.png'), 'PNG')
 print "fine"
