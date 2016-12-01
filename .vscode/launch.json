@@ -45,6 +45,7 @@
             "pythonPath": "${config.python.pythonPath}",
             "module": "module.name",
             "cwd": "${workspaceRoot}",
+            "program": "/home/doanguyen/anaconda2/bin/python",
             "debugOptions": [
                 "WaitOnAbnormalExit",
                 "WaitOnNormalExit",
@@ -58,7 +59,7 @@
             "stopOnEntry": true,
             "pythonPath": "${config.python.pythonPath}",
             "program": "${file}",
-            "cwd": "null",
+            // "cwd": "null",
             "console": "integratedTerminal",
             "debugOptions": [
                 "WaitOnAbnormalExit",
@@ -72,7 +73,7 @@
             "stopOnEntry": true,
             "pythonPath": "${config.python.pythonPath}",
             "program": "${file}",
-            "cwd": "null",
+            // "cwd": "null",
             "console": "externalTerminal",
             "debugOptions": [
                 "WaitOnAbnormalExit",
@@ -104,7 +105,7 @@
             "request": "launch",
             "stopOnEntry": false,
             "pythonPath": "${config.python.pythonPath}",
-            "program": "fully qualified path fo 'flask' executable. Generally located along with python interpreter",
+            "program": "/home/doanguyen/anaconda2/bin/flask",
             "cwd": "${workspaceRoot}",
             "env": {
                 "FLASK_APP": "${workspaceRoot}/quickstart/app.py"

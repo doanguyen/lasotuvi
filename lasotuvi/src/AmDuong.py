@@ -594,14 +594,23 @@ def timPhaToai(chiNam):
 
 
 def timTriet(canNam):
+    # Giáp Kỷ, Thân Dậu cung
     if canNam in [1, 6]:
         return 9, 10
+
+    # Ất Canh, Ngọ Mùi cung
     elif canNam in [2, 7]:
         return 7, 8
+
+    # Bính Tân, Thìn Tị cung
     elif canNam in [3, 8]:
         return 5, 6
+
+    # Đinh Nhâm, Dần Mão cung
     elif canNam in [4, 9]:
-        return 2, 4
+        return 3, 4
+
+    # Mậu Quý, Tý Sửu cung
     elif canNam in [5, 10]:
         return 1, 2
     else:
