@@ -9,9 +9,9 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 hoTen = "w"
-ngaySinh = 1
-thangSinh = 5
-namSinh = 1993
+ngaySinh = 3
+thangSinh = 2
+namSinh = 1980
 gioSinh = 1
 gioiTinh = 1
 duongLich = True
@@ -44,7 +44,8 @@ mauSac = {
     'hanhMoc': "#4CAF50",
     'hanhHoa': "#a71a14",
     'hanhTho': "#e6bd37",
-    'cungTen': "#2196f3"
+    'cungTen': "#2196f3",
+    'tuanTriet': "#FFFFFF"
 }
 hanhKim = "#9E9E9E"
 hanhThuy = "#000100"
@@ -56,6 +57,7 @@ cungTen = "#2196f3"
 # get a drawing context
 draw = ImageDraw.Draw(base)
 x, y = base.size
+# print (x, y)
 width = 2
 
 # Vẽ khung
@@ -183,8 +185,16 @@ nhapDaiHan(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
 nhapHanhCung(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
 nhapTieuHan(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
 
-base.save(os.path.join(BASE_DIR, 'imgbackend/test.png'), 'PNG')
-print("fine")
+xyTuanTriet = {
+    1: (1082, 600),
+    3: (1, 1),
+    5: (1, 1),
+    7: (1, 1),
+    9: (1, 1),
+    11: (1010, 1082)
+}
+
+# print xyTuanTriet[2]
 
 
 class taoFileAnh(object):
@@ -210,6 +220,16 @@ class taoFileAnh(object):
                     self.viTriTuan.append(cung.cungSo)
             except:
                 pass
+        self.xyTuan = xyTuanTriet[min(self.viTriTuan)]
+        self.xyTriet = xyTuanTriet[min(self.viTriTriet)]
+        self.draw.rectangle((self.xyTuan[0], self.xyTuan[1]-15, self.xyTuan[0]+80, self.xyTuan[1]+15), fill=(0, 0, 0))
+        self.draw.text((self.xyTuan[0]+10, self.xyTuan[1]-15),
+                       "Tuần".decode("utf-8").upper(), font=fontPhuTinh,
+                       fill=mauSac['tuanTriet'])
+
+print fontPhuTinh.getsize("TUẦN")
 
 myc = taoFileAnh(draw, db, thienBan)
+base.save(os.path.join(BASE_DIR, 'imgbackend/test.png'), 'PNG')
+print("fine")
 print myc.__dict__
