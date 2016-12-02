@@ -45,7 +45,7 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     amDuongChiNamSinh = diaChi[chiNam]["amDuong"]
 
     # Bản Mệnh chính là Ngũ hành nạp âm của năm sinh
-    banMenh = nguHanhNapAm(canNam, chiNam)
+    # banMenh = nguHanhNapAm(chiNam, canNam)
 
     hanhCuc = timCuc(diaBan.cungMenh, canNam)
     cuc = nguHanh(hanhCuc)
