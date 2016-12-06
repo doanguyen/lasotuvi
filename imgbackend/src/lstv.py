@@ -466,7 +466,3 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     viTriTriet1, viTriTriet2 = timTriet(canNam)
     diaBan.nhapTriet(viTriTriet1, viTriTriet2)
     return (diaBan)
-
-from DiaBan import diaBan
-
-lapDiaBan(diaBan, 2, 3, 1983, 1, 1, 1, 7)

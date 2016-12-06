@@ -3,15 +3,16 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 from src.DiaBan import diaBan
 from src.ThienBan import lapThienBan
+from src.AmDuong import nguHanh, nguHanhNapAm
 from src import lstv
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-hoTen = "w"
-ngaySinh = 24
-thangSinh = 10
-namSinh = 1991
+hoTen = "Nguyễn Văn Dũng"
+ngaySinh = 2
+thangSinh = 12
+namSinh = 2015
 gioSinh = 4
 gioiTinh = 1
 duongLich = True
@@ -34,6 +35,8 @@ fontChinhTinh = ImageFont.truetype(os.path.join(
     BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 24)
 fontPhuTinh = ImageFont.truetype(os.path.join(
     BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 20)
+fontBatTu = ImageFont.truetype(os.path.join(
+    BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 18)
 fontCungTen = ImageFont.truetype(os.path.join(
     BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 20)
 fontThuPhap = ImageFont.truetype(os.path.join(
@@ -58,7 +61,6 @@ cungTen = "#2196f3"
 # get a drawing context
 draw = ImageDraw.Draw(base)
 x, y = base.size
-print (x, y)
 width = 2
 
 # Vẽ khung
@@ -89,17 +91,6 @@ draw.line([3 * x / 4 - 2, y / 2 - 2, x - 2, y / 2 - 2],
 # Hoàn thành phần khung
 
 
-
-
-# nhapCungChu(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
-# nhapChinhTinh(draw, cung.cungSao, (300, 0), (600, 0), (300, 300), (600, 300))
-# nhapPhuTinh(draw, cung.cungSao, (300, 0), (600, 0), (300, 300), (600, 300))
-# nhapVongTrangSinh(draw, cung.cungSao, (300, 0),
-#                   (600, 0), (300, 300), (600, 300))
-# nhapDaiHan(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
-# nhapHanhCung(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
-# nhapTieuHan(draw, cung, (300, 0), (600, 0), (300, 300), (600, 300))
-
 xyTuanTriet = {
     1: (600, 1080),
     3: (150, 1080),
@@ -127,7 +118,8 @@ class taoFileAnh(object):
 
         self._tuanTriet()
         self._nhapDiaBan()
-        self._headerThienBan()
+        self._nhapHeaderThienBan()
+        self._nhapThienBan()
 
     def _nhapDiaBan(self):
         for cung in self.diaBan.thapNhiCung[1:]:
@@ -137,6 +129,15 @@ class taoFileAnh(object):
             self._nhapDaiHan(cung, a, b)
             self._nhapPhuTinh(cung.cungSao, a, b)
             self._nhapVongTrangSinh(cung.cungSao, a, b)
+
+    def _nhapThienBan(self):
+        self._nhapTenNguoiLap()
+        self._nhapAmDuongThuanLy()
+        self._nhapBanMenh()
+        self._nhapCuc()
+        self._menhThanChu()
+        self._sinhKhac()
+        self._batTu()
 
     def _viTriCung(self, cungID):
         viTriCung = {
@@ -287,11 +288,76 @@ class taoFileAnh(object):
             font=fontCungTen, fill=(0, 0, 0)
         )
 
-    def _headerThienBan(self):
+    def _nhapHeaderThienBan(self):
         text = u"Lá số tử vi".decode('utf8')
         x, y = fontThuPhap.getsize(text)
         self.draw.text((600-x/2, 400), text, font=fontThuPhap, fill=(0, 0, 0))
+
+    def _nhapTenNguoiLap(self):
+        text = self.thienBan.ten.decode('utf8')
+        x, y = fontPhuTinh.getsize(text)
+        self.draw.text((600-x/2, 480), text, font=fontPhuTinh,
+                       fill=mauSac['hanhHoa'])
+
+    def _nhapAmDuongThuanLy(self):
+        text = u"{} {}, {}".format(
+            self.thienBan.amDuongNamSinh.decode('utf-8'),
+            self.thienBan.namNu.decode('utf-8'),
+            self.thienBan.amDuongMenh.decode('utf-8')
+        )
+        x, y = fontPhuTinh.getsize(text)
+        self.draw.text((600-x/2, 510), text, font=fontPhuTinh,
+                       fill=mauSac['cungTen'])
+
+    def _nhapBanMenh(self):
+        menh = self.thienBan.menh
+        css = nguHanh(menh)['css']
+        text = u"Mệnh {}".format(
+            self.thienBan.banMenh.decode('utf-8')
+        )
+        x, y = fontPhuTinh.getsize(text)
+        self.draw.text((600-x/2, 535), text, font=fontPhuTinh,
+                       fill=mauSac[css])
+
+    def _nhapCuc(self):
+        text = u"Cục: {}".format(
+            self.thienBan.tenCuc.decode('utf-8')
+        )
+        x, y = fontPhuTinh.getsize(text)
+        self.draw.text((600-x/2, 555), text, font=fontPhuTinh,
+                       fill=mauSac['cungTen'])
+
+    def _menhThanChu(self):
+        menhChu = u"Chủ mệnh: {}".format(
+            self.thienBan.menhChu.decode('utf8')
+        )
+        thanChu = u"Chủ thân: {}".format(
+            self.thienBan.thanChu.decode('utf8')
+        )
+        a, b = fontPhuTinh.getsize(menhChu)
+        c, d = fontPhuTinh.getsize(thanChu)
+        self.draw.text((600-a/2, 580), menhChu, font=fontPhuTinh,
+                       fill=mauSac['cungTen'])
+        self.draw.text((600-c/2, 605), thanChu, font=fontPhuTinh,
+                       fill=mauSac['cungTen'])
+
+    def _sinhKhac(self):
+        text = u"{}".format(
+            self.thienBan.sinhKhac.decode('utf-8')
+        )
+        x, y = fontPhuTinh.getsize(text)
+        self.draw.text((600-x/2, 630), text, font=fontPhuTinh,
+                       fill=mauSac['cungTen'])
+
+    def _batTu(self):
+        cssNam, napAmNam = nguHanh(nguHanhNapAm(self.thienBan.chiNam, self.thienBan.canNam)), nguHanhNapAm(self.thienBan.chiNam, self.thienBan.canNam, True)
+        cssThang, napAmThang = nguHanh(nguHanhNapAm(self.thienBan.chiThang, self.thienBan.canThang)), nguHanhNapAm(self.thienBan.chiThang, self.thienBan.canThang, True)
+        cssNgay, napAmNgay = nguHanh(nguHanhNapAm(self.thienBan.chiNgay, self.thienBan.canNgay)), nguHanhNapAm(self.thienBan.chiNgay, self.thienBan.canNgay, True)
+        cssGio, napAmGio = nguHanh(nguHanhNapAm(self.thienBan.chiGioSinh, self.thienBan.canGioSinh)), nguHanhNapAm(self.thienBan.chiGioSinh, self.thienBan.canGioSinh, True)
+        x1, x2, x3, x4, x5 = 364, 484, 604, 724, 844
+        
+
+
 myc = taoFileAnh(draw, db, thienBan)
 base.save(os.path.join(BASE_DIR, 'imgbackend/test.png'), 'PNG')
 print("fine")
-print myc.__dict__
