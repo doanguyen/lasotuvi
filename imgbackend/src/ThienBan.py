@@ -19,7 +19,7 @@ class lapThienBan(object):
         canGioSinh = ((jdFromDate(nn, tt, nnnn)-1) * 2 % 10 + gioSinh) % 10
         if canGioSinh == 0:
             canGioSinh = 10
-        self.chiGioSinh = chiGioSinh['id']
+        self.chiGioSinh = chiGioSinh
         self.canGioSinh = canGioSinh
         self.gioSinh = "%s %s" % (thienCan[canGioSinh]['tenCan'], chiGioSinh['tenChi'])
 

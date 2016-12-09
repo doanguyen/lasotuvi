@@ -5,7 +5,8 @@
 from AmDuong import (dichCung, ngayThangNam, ngayThangNamCanChi, nguHanh,
                      nguHanhNapAm, thienCan, timCoThan, timCuc, timHoaLinh,
                      timLuuTru, timPhaToai, timThienKhoi, timThienMa,
-                     timThienQuanThienPhuc, timTrangSinh, timTriet, timTuVi, diaChi)
+                     timThienQuanThienPhuc, timTrangSinh, timTriet, timTuVi,
+                     diaChi)
 from Sao import (saoAnQuang, saoBachHo, saoBacSy, saoBatToa, saoBenh,
                  saoBenhPhu, saoCoThan, saoCuMon, saoDaiHao, saoDaLa,
                  saoDaoHoa, saoDauQuan, saoDeVuong, saoDiaGiai, saoDiaKhong,
@@ -45,7 +46,7 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     amDuongChiNamSinh = diaChi[chiNam]["amDuong"]
 
     # Bản Mệnh chính là Ngũ hành nạp âm của năm sinh
-    # banMenh = nguHanhNapAm(chiNam, canNam)
+    # banMenh = nguHanhNapAm(canNam, chiNam)
 
     hanhCuc = timCuc(diaBan.cungMenh, canNam)
     cuc = nguHanh(hanhCuc)

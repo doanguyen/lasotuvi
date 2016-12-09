@@ -26,21 +26,21 @@ thapNhiCung = db.thapNhiCung
 cung = (thapNhiCung[11])
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-base = Image.open(os.path.join(BASE_DIR, 'imgbackend', 'background.png'))
+base = Image.open(os.path.join(BASE_DIR, 'src', 'background.png'))
 
 # get a font
 fontChinhTinh = ImageFont.truetype(os.path.join(
-    BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 24)
+    BASE_DIR, 'fonts/NotoSerif-Bold.ttf'), 24)
 fontPhuTinh = ImageFont.truetype(os.path.join(
-    BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 20)
+    BASE_DIR, 'fonts/NotoSerif-Bold.ttf'), 20)
 fontBatTu = ImageFont.truetype(os.path.join(
-    BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 18)
+    BASE_DIR, 'fonts/NotoSerif-Bold.ttf'), 18)
 fontCungTen = ImageFont.truetype(os.path.join(
-    BASE_DIR, 'imgbackend/fonts/NotoSerif-Bold.ttf'), 20)
+    BASE_DIR, 'fonts/NotoSerif-Bold.ttf'), 20)
 fontThuPhap = ImageFont.truetype(os.path.join(
-    BASE_DIR, 'imgbackend/fonts/thuphap.ttf'), 60)
+    BASE_DIR, 'fonts/thuphap.ttf'), 60)
 # màu ngũ hành
 mauSac = {
     'hanhKim': "#9E9E9E",
@@ -412,7 +412,6 @@ class taoFileAnh(object):
             gn5 += 20
 
 
-
 myc = taoFileAnh(draw, db, thienBan)
-base.save(os.path.join(BASE_DIR, 'imgbackend/test.png'), 'PNG')
+base.save(os.path.join(os.path.dirname(BASE_DIR), 'thuvienlaso/test.png'), 'PNG')
 print("fine")
