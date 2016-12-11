@@ -23,4 +23,4 @@ pip install Django
 Ví dụ:
 
 
-![Mã nguồn mở chương trình an sao lasotuvi](thuvienlaso/test.jpg)
+![Mã nguồn mở chương trình an sao lasotuvi](thuvienlaso/test.png)
