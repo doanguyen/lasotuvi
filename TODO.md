@@ -1,7 +1,7 @@
 ## Todo list ##
 
-* [ ] Tích hợp lịch âm theo tiết khí
-* [ ] Tạo ảnh lá số bằng python
-* [ ] Xử lý thiên bàn cho chuẩn
+* [x] Tạo ảnh lá số bằng python
+* [x] Xử lý thiên bàn cho chuẩn
+* [x] Sửa lại trường hợp sinh năm 1983
 * [ ] Viết lại Readme, cho thêm các bước an sao
-* [ ] Sửa lại trường hợp sinh năm 1983
+* [ ] Tích hợp lịch âm theo tiết khí
