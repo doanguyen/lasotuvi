@@ -134,7 +134,8 @@ def getSunLongitude(jdn, timeZone):
     M = 357.52910 + 35999.05030*T - 0.0001559*T2 - 0.00000048*T*T2
     L0 = 280.46645 + 36000.76983*T + 0.0003032*T2
     DL = (1.914600 - 0.004817*T - 0.000014*T2)*math.sin(dr*M)
-    DL = DL + (0.019993 - 0.000101*T)*math.sin(dr*2*M) + 0.000290*math.sin(dr*3*M)
+    DL = DL + (0.019993 - 0.000101*T)*math.sin(dr*2*M) +\
+        0.000290*math.sin(dr*3*M)
     L = L0 + DL
     omega = 125.04 - 1934.136 * T
     L = L - 0.00569 - 0.00478 * math.sin(omega * dr)
@@ -231,8 +232,7 @@ def L2S(lunarD, lunarM, lunarY, lunarLeap, tZ=7):
     else:
         a11 = getLunarMonth11(lunarY, tZ)
         b11 = getLunarMonth11(lunarY + 1, tZ)
-    k = math.floor(0.5 +
-            (a11 - 2415021.076998695) / 29.530588853)
+    k = math.floor(0.5 + (a11 - 2415021.076998695) / 29.530588853)
     off = lunarM - 11
     if (off < 0):
         off += 12

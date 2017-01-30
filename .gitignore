@@ -90,3 +90,6 @@ ENV/
 
 # Thu vien la so
 thuvienlaso/*imgbackend
+
+.vscode
+tags
