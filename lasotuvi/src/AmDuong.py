@@ -219,11 +219,11 @@ def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
     """Summary
 
     Args:
-        nn (TYPE): Description
-        tt (TYPE): Description
-        nnnn (TYPE): Description
-        duongLich (bool, optional): Description
-        timeZone (int, optional): Description
+        nn (TYPE): ngay
+        tt (TYPE): thang
+        nnnn (TYPE): nam
+        duongLich (bool, optional): bool
+        timeZone (int, optional): +7 Vietnam
 
     Returns:
         TYPE: Description
