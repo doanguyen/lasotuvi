@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/usr/bin/python2.7",
+    "python.pythonPath": "python",
         // Whether to lint Python files using pylint.
     "python.linting.pylintEnabled": false,
 
