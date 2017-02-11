@@ -93,3 +93,5 @@ thuvienlaso/*imgbackend
 
 .vscode
 tags
+/.vs/lasotuvi/v14/.suo
+/lasotuvi.pyproj

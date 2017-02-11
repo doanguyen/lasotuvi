@@ -1,6 +1,8 @@
 from __future__ import absolute_import
 import unittest
 # from amlich.amlich import jdn
+from amlich.amlich import FIRST_DAY
+print(FIRST_DAY)
 
 
 class AmlichTestCase(unittest.TestCase):
