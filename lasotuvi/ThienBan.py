@@ -16,12 +16,13 @@ class lapThienBan(object):
         self.namNu = "Nam" if gioiTinh == 1 else "Nữ"
 
         chiGioSinh = diaChi[gioSinh]
-        canGioSinh = ((jdFromDate(nn, tt, nnnn)-1) * 2 % 10 + gioSinh) % 10
+        canGioSinh = ((jdFromDate(nn, tt, nnnn) - 1) * 2 % 10 + gioSinh) % 10
         if canGioSinh == 0:
             canGioSinh = 10
         self.chiGioSinh = chiGioSinh
         self.canGioSinh = canGioSinh
-        self.gioSinh = "%s %s" % (thienCan[canGioSinh]['tenCan'], chiGioSinh['tenChi'])
+        self.gioSinh = "{} {}".format(thienCan[canGioSinh]['tenCan'],
+                                      chiGioSinh['tenChi'])
 
         self.timeZone = timeZone
         self.today = time.strftime("%d/%m/%Y")

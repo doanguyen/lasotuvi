@@ -185,8 +185,10 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     diaBan.nhapSao(viTriTrucPhu, saoTrucPhu)
 
     #  Vòng ngũ hành cục Tràng sinh
-    # !!! Đã sửa !!! *LƯU Ý Phần này đã sửa* Theo cụ Thiên Lương: Nam -> Thuận, Nữ -> Nghịch (Không phù hợp)
-    # **ISSUE 2**: Dương nam, Âm nữ theo chiều thuận, Âm nam Dương nữ theo chiều nghịch 
+    # !!! Đã sửa !!! *LƯU Ý Phần này đã sửa* Theo cụ Thiên Lương: Nam -> Thuận,
+    # Nữ -> Nghịch (Không phù hợp)
+    # **ISSUE 2**: Dương nam, Âm nữ theo chiều thuận, Âm nam Dương nữ theo
+    # chiều nghịch
 
     viTriTrangSinh = timTrangSinh(cucSo)
     diaBan.nhapSao(viTriTrangSinh, saoTrangSinh)
@@ -269,20 +271,23 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     viTriBatToa = dichCung(2, 2 - viTriTamThai)
     diaBan.nhapSao(viTriBatToa, saoBatToa)
 
-    #! Vị trí sao Ân Quang - Thiên Quý
-    #! Lấy cung thìn làm mồng 1 đếm thuận đến ngày sinh,
-    #! lui lại một cung để lấy đó làm giờ tý đếm thuận đến giờ sinh là Ân Quang
-    #! Thiên Quý đối với Ân Quang qua trục Sửu Mùi
-    #@ viTriAnQuang = dichCung(5, nn + gioSinh - 3)
-    #@ viTriThienQuy = dichCung(2, 2 - viTriAnQuang)
+    # ! Vị trí sao Ân Quang - Thiên Quý
+    # ! Lấy cung thìn làm mồng 1 đếm thuận đến ngày sinh,
+    # ! lui lại một cung để lấy đó làm giờ tý đếm thuận đến giờ sinh là
+    #  Ân Quang
+    # ! Thiên Quý đối với Ân Quang qua trục Sửu Mùi
+    # @ viTriAnQuang = dichCung(5, nn + gioSinh - 3)
+    # @ viTriThienQuy = dichCung(2, 2 - viTriAnQuang)
     # Phía trên là cách an Quang-Quý theo cụ Vu Thiên
     # Sau khi tìm hiểu thì Quang-Quý sẽ được an theo Xương-Khúc như sau:
     # Ân Quang − Xem Văn Xương ở cung nào, kể cung ấy là mồng một
-    # bắt đầu đếm thoe chiều thuận đến ngày sinh, lùi lại một cung, an Ân Quang.
-    # Thiên Quý − Xem Văn Khúc ở cung nào, kể cung ấy là mồng một, 
-    # !!! bắt đầu đếm theo chiều nghịch đến ngày sinh, lùi lại một cung, an Thiên Quý.!!!
+    # bắt đầu đếm thoe chiều thuận đến ngày sinh, lùi lại một cung,
+    # an Ân Quang.
+    # Thiên Quý − Xem Văn Khúc ở cung nào, kể cung ấy là mồng một,
+    # !!! bắt đầu đếm theo chiều nghịch đến ngày sinh, lùi lại một cung,
+    # an Thiên Quý.!!!
     # ??? Thiên Quý ở đối cung của Ân Quang qua trục Sửu Mùi mới chính xác???
-    
+
     viTriAnQuang = dichCung(viTriVanXuong, nn - 2)
     diaBan.nhapSao(viTriAnQuang, saoAnQuang)
 
