@@ -1,9 +1,0 @@
-{
-    "python.pythonPath": "python",
-        // Whether to lint Python files using pylint.
-    "python.linting.pylintEnabled": false,
-
-    // Whether to lint Python files using pep8
-    "python.linting.pep8Enabled": true,
-    "python.formatting.provider": "autopep8"
-}
