@@ -9,7 +9,7 @@ $(document).ready(function () {
     $("#namsinh").val(thisyear);
     function dichCung(cungBanDau, soCungDich) {
         var cungSauKhiDich = Math.floor(cungBanDau);
-        var cungSauKhiDich, Math, floor = (soCungDich);
+        cungSauKhiDich += Math.floor(soCungDich);
         if (cungSauKhiDich % 12 == 0) {
             return 12;
         }
@@ -17,20 +17,21 @@ $(document).ready(function () {
             return cungSauKhiDich % 12;
         }
     }
-    // diaban = $("[cung-id]").click(function () {
-    //     $("[cung-id]").removeClass("xungChieu");
-    //     cungid = $(this).attr('cung-id');
-    //     cungXungChieu = dichCung(cungid, 6);
-    //     cungTamHop1 = dichCung(cungid, 4);
-    //     cungTamHop2 = dichCung(cungid, 8);
-    //     $(this).addClass("xungChieu");
-    //     $("[cung-id=" + cungXungChieu + "]").addClass("xungChieu");
-    //     $("[cung-id=" + cungTamHop1 + "]").addClass("xungChieu");
-    //     $("[cung-id=" + cungTamHop2 + "]").addClass("xungChieu");
-    // });
-    // $("#thienBan").click(function () {
-    //     $("[cung-id]").removeClass("xungChieu");
-    // });
+    diaban = $("[cung-id]").click(function () {
+        $("[cung-id]").removeClass("xungChieu");
+        cungid = $(this).attr('cung-id');
+        cungXungChieu = dichCung(cungid, 6);
+        cungTamHop1 = dichCung(cungid, 4);
+        cungTamHop2 = dichCung(cungid, 8);
+        console.log(cungXungChieu, cungTamHop1)
+        $(this).addClass("xungChieu");
+        $("[cung-id=" + cungXungChieu + "]").addClass("xungChieu");
+        $("[cung-id=" + cungTamHop1 + "]").addClass("xungChieu");
+        $("[cung-id=" + cungTamHop2 + "]").addClass("xungChieu");
+    });
+    $("#thienBan").click(function () {
+        $("[cung-id]").removeClass("xungChieu");
+    });
     function lapLaSo(laso) {
         try {
             $.templates({
