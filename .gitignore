@@ -81,6 +81,7 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
+.venv/
 
 # Spyder project settings
 .spyderproject
@@ -95,3 +96,6 @@ thuvienlaso/*imgbackend
 tags
 /.vs/lasotuvi/v14/.suo
 /lasotuvi.pyproj
+
+
+*.sublime-*

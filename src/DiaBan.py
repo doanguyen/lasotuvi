@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-(c) 2016 Nguyen Van Dung.
+(c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
+
 from AmDuong import diaChi, dichCung, khoangCachCung
 
 
