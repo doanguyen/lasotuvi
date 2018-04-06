@@ -1,4 +1,8 @@
 from __future__ import absolute_import
-import unittest
-from lasotuvi import Lich
+import pytest
 
+
+@pytest.mark.thienban
+class TestThienBan(object):
+    def test_hi(self):
+        pass

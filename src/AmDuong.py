@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-(c) 2016 Nguyen Van Dung.
+(c) 2016 doanguyen.
 """
 
 from Lich import S2L, L2S, jdFromDate

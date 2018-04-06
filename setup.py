@@ -8,4 +8,6 @@ setup(name='lasotuvi',
       author_email='dungnv2410 at gmail.com',
       license='MIT',
       packages=['lasotuvi'],
+      setup_requires=['pytest-runner'],
+      tests_require=['pytest'],
       zip_safe=False)

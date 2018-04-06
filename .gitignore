@@ -99,3 +99,7 @@ tags
 
 
 *.sublime-*
+.cache
+.eggs
+.pytest_cache/*
+_pycache
