@@ -317,7 +317,7 @@ def nguHanh(tenHanh):
     Raises:
         Exception: Description
     """
-    if tenHanh == "Kim" or tenHanh == "K":
+    if tenHanh in ["Kim", "K"]:
         return {"id": 1, "tenHanh": "Kim", "cuc": 4, "tenCuc": "Kim tứ Cục",
                 "css": "hanhKim"}
     elif tenHanh == "Moc" or tenHanh == "M":

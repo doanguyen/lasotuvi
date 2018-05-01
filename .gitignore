@@ -103,3 +103,4 @@ tags
 .eggs
 .pytest_cache/*
 _pycache
+.mypy*

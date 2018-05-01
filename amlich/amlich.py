@@ -225,5 +225,5 @@ def getSunLongitude(jdn, timeZone):
     return floor(L / pi * 6)
 
 
-a = (getLunarDate(24, 12, 1991))
+a = (getLunarDate(24, 10, 1991))
 print(vars(a))
