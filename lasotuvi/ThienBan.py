@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-(c) 2016 Nguyen Van Dung.
+(c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
-from AmDuong import (canChiNgay, diaChi, ngayThangNam, ngayThangNamCanChi,
+from lasotuvi.AmDuong import (canChiNgay, diaChi, ngayThangNam, ngayThangNamCanChi,
                      nguHanh, nguHanhNapAm, thienCan, timCuc, sinhKhac)
 import time
-from Lich import jdFromDate
+from lasotuvi.Lich_HND import jdFromDate
 
 
 class lapThienBan(object):

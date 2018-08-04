@@ -7,13 +7,11 @@ import ephem
 from typing import Tuple
 from datetime import date
 
+LUNAR_contract = Tuple[date, bool]  # [date, thang_nhuan]
 
-LUNAR_contra = Tuple[date, bool]  # [date, thang_nhuan]
 
-
-def S2L(solarDate: ephem.Date, location: ephem.Observer, timezone: int) -> LUNAR_contra:
-
-    solarDate += timezone * ephem.hour # so we are working in the correct timezone
+def s2l(solarDate: ephem.Date, location: ephem.Observer, timezone: int) -> LUNAR_contract:
+    solarDate += timezone * ephem.hour  # so we are working in the correct timezone
 
     lunar_leap = False
 
@@ -40,8 +38,8 @@ def S2L(solarDate: ephem.Date, location: ephem.Observer, timezone: int) -> LUNAR
     return tuple(date(lunarYear, lunarMonth, lunarDay), lunar_leap)
 
 
-def L2S(amlich: LUNAR_contra, location: ephem.Observer) -> LUNAR_contra:
-    pass
+def l2s(amlich: LUNAR_contract, location: ephem.Observer) -> LUNAR_contract:
+    return amlich, location
 
 
 def find_new_moon_between(startDate: ephem.Date, endDate: ephem.Date) -> int:
@@ -51,6 +49,7 @@ def find_new_moon_between(startDate: ephem.Date, endDate: ephem.Date) -> int:
         startDate += 29.5
     return newMoon
 
+
 def find_solar_terms_between(startDate: ephem.Date, endDate: ephem.Date) -> list:
     solar_terms = []
     for degree in range(0, 330, 30):
@@ -58,10 +57,9 @@ def find_solar_terms_between(startDate: ephem.Date, endDate: ephem.Date) -> list
         if term < endDate:
             solar_terms.append(term)
     return solar_terms
-    
 
-def when_is_sun_at_degrees_longitude(date:date, degrees: int) -> ephem.Date:
 
+def when_is_sun_at_degrees_longitude(date: date, degrees: int) -> ephem.Date:
     # Thanks to Brandon Rhode @ https://answers.launchpad.net/pyephem/+question/110832
 
     # Find out the sun's current longitude.

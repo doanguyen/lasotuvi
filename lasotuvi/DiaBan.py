@@ -3,7 +3,7 @@
 (c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
 
-from AmDuong import diaChi, dichCung, khoangCachCung
+from lasotuvi.AmDuong import diaChi, dichCung, khoangCachCung
 
 
 class cungDiaBan(object):

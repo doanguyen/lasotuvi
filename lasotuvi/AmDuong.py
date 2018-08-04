@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-(c) 2016 doanguyen.
+(c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
 
-from Lich import S2L, L2S, jdFromDate
+from lasotuvi.Lich_HND import S2L, L2S, jdFromDate
 
 
 thienCan = [
@@ -421,7 +421,6 @@ def nguHanhNapAm(diaChi, thienCan, xuatBanMenh=False):
                 return banMenh[nh]
             else:
                 return nh[0]
-        raise
     except:
         raise Exception(nguHanhNapAm.__doc__)
 

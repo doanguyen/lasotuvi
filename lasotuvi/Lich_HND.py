@@ -1,8 +1,8 @@
-'''
+"""
 (c) 2006 Ho Ngoc Duc.
 Astronomical algorithms
 from the book "Astronomical Algorithms" by Jean Meeus, 1998
-'''
+"""
 
 import math
 
