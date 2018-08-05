@@ -1,5 +1,5 @@
 attrs==17.4.0
-ephem==3.7.6.0
+ephem==3.7.6.0  ; sys_platform == 'linux'
 more-itertools==4.1.0
 mypy==0.580
 pluggy==0.6.0
