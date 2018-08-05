@@ -104,3 +104,4 @@ tags
 .pytest_cache/*
 _pycache
 .mypy*
+.idea/
