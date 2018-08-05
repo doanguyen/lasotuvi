@@ -5,7 +5,7 @@ lasotuvi là mã nguồn mở chương trình an sao lá số tử vi sử  dụ
 Cách sử dụng:
 
 ```
-python manager.py runserver
+python manage.py runserver
 ```
 
 mở trang web: 
