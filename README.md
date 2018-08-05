@@ -1,5 +1,8 @@
 Mã nguồn mở chương trình an sao lasotuvi
 ===========================================
+
+[![Build Status](https://travis-ci.org/doanguyen/lasotuvi.svg?branch=master)](https://travis-ci.org/doanguyen/lasotuvi)
+
 lasotuvi là mã nguồn mở chương trình an sao lá số tử vi sử  dụng ngôn ngữ lập trình python.
 
 Cách sử dụng:
