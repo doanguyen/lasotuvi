@@ -5,6 +5,8 @@
 
 from lasotuvi.Lich_HND import S2L, L2S, jdFromDate
 
+AM = -1
+DUONG = 1
 
 thienCan = [
     {
