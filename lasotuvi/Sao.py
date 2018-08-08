@@ -133,6 +133,9 @@ class LiemTrinh(Sao):
     ten="Liêm trinh"
     hanh = Hanh.HOA
     loai = Tinh.CHINH_TINH.value
+    phuong_vi = "Bắc đẩu tinh"
+    am_duong = AmDuong.DUONG
+    vong_trang_sinh = 0
 # # Tử vi tinh hệ
 # saoTuVi = Sao(1, u"Tử vi", "O", 1, u"Đế tinh", 1, 0)
 # saoLiemTrinh = Sao(2, u"Liêm trinh", "H", 1, u"Bắc đẩu tinh", 1, 0)
