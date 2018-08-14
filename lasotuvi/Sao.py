@@ -3,7 +3,7 @@
 (c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
 from enum import Enum, unique
-from typing import Optional
+from typing import Optional, Union
 
 from lasotuvi import AmDuong
 from lasotuvi.Hanh import Hanh
@@ -38,7 +38,7 @@ class Tinh(Enum):
 
 class Sao(object):
     @property
-    def id(self) -> int_or_none:
+    def id(self) -> Optional[int]:
         return self._id or None
 
     @id.setter
@@ -46,7 +46,7 @@ class Sao(object):
         self._id = value or None
 
     @property
-    def ten(self) -> str_or_none:
+    def ten(self) -> Optional[str]:
         return self._name or None
 
     @ten.setter
@@ -54,7 +54,7 @@ class Sao(object):
         self._name = value or None
 
     @property
-    def hanh(self) -> str_or_none:
+    def hanh(self) -> Optional[Hanh]:
         return self._hanh or None
 
     @hanh.setter
@@ -63,11 +63,11 @@ class Sao(object):
         self._sao_css = Hanh.css
 
     @property
-    def loai(self) -> int_or_none:
+    def loai(self) -> Union[int, Tinh]:
         return self._loai or None
 
     @loai.setter
-    def loai(self, sao_loai: int) -> None:
+    def loai(self, sao_loai: Union[int, Tinh]) -> None:
         self._loai = sao_loai
 
     @property
@@ -96,7 +96,7 @@ class Sao(object):
 
     @property
     def css(self) -> str_or_none:
-        return self._css or None
+        return self._sao_css or None
 
     # @css.setter
     # def css(self, sao_css: str) -> None:
@@ -120,22 +120,51 @@ class Sao(object):
 
 
 class TuVi(Sao):
-    id = 1
-    ten = "Tử vi"
+    id = 1  # type: ignore
+    ten = "Tử vi"  # type: ignore
     hanh = Hanh.THO
     loai = Tinh.CHINH_TINH.value
-    phuong_vi = "Đế tinh"
+    phuong_vi = "Đế tinh"  # type: ignore
     am_duong = AmDuong.DUONG
-    vong_trang_sinh = 0
+    vong_trang_sinh = 0  # type: ignore
+
 
 class LiemTrinh(Sao):
-    id=2
-    ten="Liêm trinh"
+    id = 2  # type: ignore
+    ten = "Liêm trinh"  # type: ignore
     hanh = Hanh.HOA
     loai = Tinh.CHINH_TINH.value
-    phuong_vi = "Bắc đẩu tinh"
+    phuong_vi = "Bắc đẩu tinh"  # type: ignore
     am_duong = AmDuong.DUONG
-    vong_trang_sinh = 0
+    vong_trang_sinh = 0  # type: ignore
+
+
+class ThienDong(Sao):
+    # saoThienDong = Sao(3, "Thiên đồng", "T", 1, "Bắc đẩu tinh", 1, 0)
+    id = 3  # type: ignore
+    ten = "Thiên đồng"
+    hanh = Hanh.THUY
+    loai = Tinh.CHINH_TINH
+    phuong_vi = "Bắc đẩu tinh"
+
+
+class VuKhuc(Sao):
+    # saoVuKhuc = Sao(4, "Vũ khúc", "K", 1, "Bắc đẩu tinh", -1, 0)
+    id = 4
+    ten = "Vũ khúc"
+    hanh = Hanh.KIM
+    loai = Tinh.CHINH_TINH
+    phuong_vi = "Bắc đẩu tinh"
+
+
+class ThaiDuong(Sao):
+    # saoThaiDuong = Sao(5, "Thái Dương", "H", 1, "Nam đẩu tinh", 1, 0)
+    id = 5
+    ten = "Thái Dương"
+    hanh = Hanh.HOA
+    loai = Tinh.CHINH_TINH
+    phuong_vi = "Nam đẩu tinh"
+
 # # Tử vi tinh hệ
 # saoTuVi = Sao(1, u"Tử vi", "O", 1, u"Đế tinh", 1, 0)
 # saoLiemTrinh = Sao(2, u"Liêm trinh", "H", 1, u"Bắc đẩu tinh", 1, 0)

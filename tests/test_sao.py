@@ -4,16 +4,7 @@ from lasotuvi.Hanh import Hanh
 from lasotuvi.Sao import Sao, TuVi
 
 
-class example(Sao):
-    id = 1
-    ten = 'Tử vi'
-    hanh = Hanh.THO
-    loai = 2
-    phuong_vi = "Đế tinh"
-    am_duong = 1
-    vong_trang_sinh = 0
-    vi_tri_cung = 2
-
+example = TuVi
 
 class TestSao(TestCase):
     def test_id(self):
@@ -26,7 +17,7 @@ class TestSao(TestCase):
         self.assertEqual(Hanh.THO, (example.hanh))
 
     def test_loai(self):
-        self.assertEqual(2, example.loai)
+        self.assertEqual(1, example.loai)
         self.assertEqual(1, TuVi.loai)
 
     def test_phuong_vi(self):

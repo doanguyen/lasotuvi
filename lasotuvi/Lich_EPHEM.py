@@ -4,13 +4,24 @@
 """
 
 import ephem
-from typing import Tuple
+from typing import Tuple, Optional
 from datetime import date
 
-LUNAR_contract = Tuple[date, bool]  # [date, thang_nhuan]
+LUNAR_contract = Tuple[ephem.Date, bool]  # [date, thang_nhuan]
 
 
-def s2l(solarDate: ephem.Date, location: ephem.Observer, timezone: int) -> LUNAR_contract:
+def find_lunar_month_between(previousWinterSolstice, nextWinterSolstice):
+    pass
+
+
+def s2l(solarDate: ephem.Date, location: ephem.Observer, timezone: Optional[int]) -> LUNAR_contract:
+    """
+    Chuyển đổi từ ngày dương lịch sang âm lịch
+    @param solarDate:
+    @param location:
+    @param timezone:
+    @return List bao gồm ngày tháng năm và có phải tháng nhuận hay không
+    """
     solarDate += timezone * ephem.hour  # so we are working in the correct timezone
 
     lunar_leap = False
@@ -35,7 +46,7 @@ def s2l(solarDate: ephem.Date, location: ephem.Observer, timezone: int) -> LUNAR
         lunar_leap = (lunarMonth == find_lunar_month_between(previousWinterSolstice, nextWinterSolstice))
 
     print(dayInLunarYear, previousWinterSolstice, nextWinterSolstice)
-    return tuple(date(lunarYear, lunarMonth, lunarDay), lunar_leap)
+    return Tuple[ephem.Date(date(lunarYear, lunarMonth, lunarDay)), lunar_leap]
 
 
 def l2s(amlich: LUNAR_contract, location: ephem.Observer) -> LUNAR_contract:
