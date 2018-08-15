@@ -17,12 +17,21 @@ def find_lunar_month_between(previousWinterSolstice, nextWinterSolstice):
 def s2l(solarDate: ephem.Date, location: ephem.Observer, timezone: Optional[int]) -> LUNAR_contract:
     """
     Chuyển đổi từ ngày dương lịch sang âm lịch
-    @param solarDate:
-    @param location:
-    @param timezone:
+    @param solarDate: ngày dương lịch
+    @param location: địa điểm, bao gồm lon,lat
+    @param timezone: giá trị của timezone, Việt nam là 7 (optional)
     @return List bao gồm ngày tháng năm và có phải tháng nhuận hay không
+
+    Ví dụ:
+    hanoi = ephem.Observer()
+    hanoi.lon, hanoi.lat = '105.834160', '21.027764'
+
+    ngaysinh = ephem.Date('1984/05/30 16:23:45.12')  # sinh ngày 30 tháng 5 năm 1984, vào 16 giờ 23 phút 45.12 giây
+
+    amlich = s2l(solarDate=ngaysinh, location=hanoi)
     """
-    solarDate += timezone * ephem.hour  # so we are working in the correct timezone
+    if timezone is not None and location is None:
+        solarDate += timezone * ephem.hour  # so we are working in the correct timezone
 
     lunar_leap = False
 
@@ -72,7 +81,6 @@ def find_solar_terms_between(startDate: ephem.Date, endDate: ephem.Date) -> list
 
 def when_is_sun_at_degrees_longitude(date: date, degrees: int) -> ephem.Date:
     # Thanks to Brandon Rhode @ https://answers.launchpad.net/pyephem/+question/110832
-
     # Find out the sun's current longitude.
 
     sun = ephem.Sun(date)
