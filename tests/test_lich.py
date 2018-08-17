@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import unittest
 from datetime import date
 
+import ephem
 import pytest
 from ephem import Date, Observer
 
@@ -26,7 +27,7 @@ class TestLich(unittest.TestCase):
 
     @pytest.mark.s2l
     def test_S2L(self):
-        # self.lunardate = s2l(self.solardate, self.tunhien, self.timezone)
+        self.lunardate = s2l(self.solardate, self.tunhien, self.timezone)
         # for solar, lunar in calendar_table.items():
         #     assert lunar == s2l(solar, self.tunhien, self.timezone)
         self.assertTrue(True)
@@ -59,3 +60,6 @@ class TestLich(unittest.TestCase):
 
         # for newmoon in newmoons:
         #     print(newmoon)
+
+    def test_ham_datetime(self):
+        self.assertEqual(ephem.Date('1991/10/24'), ephem.Date(self.solardate))

@@ -2,6 +2,14 @@ from enum import Enum
 
 
 class Hanh(Enum):
+    """
+    là một enum chứa giá trị các hành
+    Kim = K = 1
+    Thủy = T = 2
+    Hỏa = H = 3
+    Thổ = O = 4
+    Mộc = M = 5
+    """
     KIM = K = 1
     THUY = T = 2
     HOA = H = 3

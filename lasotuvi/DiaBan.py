@@ -7,7 +7,6 @@ from lasotuvi.AmDuong import diaChi, dichCung, khoangCachCung
 
 
 class cungDiaBan(object):
-    """docstring for cungDiaBan"""
     def __init__(self, cungID):
         # super(cungDiaBan, self).__init__()
         hanhCung = [None, "Thủy", "Thổ", "Mộc", "Mộc", "Thổ", "Hỏa",

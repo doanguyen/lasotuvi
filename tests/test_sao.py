@@ -7,6 +7,7 @@ from lasotuvi.Sao import Sao, TuVi
 example = TuVi
 
 class TestSao(TestCase):
+
     def test_id(self):
         self.assertEqual(1, example.id)
 
@@ -33,5 +34,3 @@ class TestSao(TestCase):
     def test_dac_tinh(self):
         self.assertTrue(True)
 
-    def test_vi_tri_cung(self):
-        self.assertEqual(2, example.vi_tri_cung)

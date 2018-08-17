@@ -4,6 +4,7 @@ from lasotuvi.Hanh import Hanh
 
 
 class TestHanh(TestCase):
+
     def test_KIM(self):
         self.assertEqual(Hanh.KIM.value, 1)
 
