@@ -39,8 +39,8 @@ class TestLich(unittest.TestCase):
 
     @pytest.mark.findsolarterms
     def test_find_solar_terms_between(self):
-        startDate = Date("1983/12/1")
-        endDate = Date('1984/12/23')
+        startDate = Date("2003/12/30")
+        endDate = Date('2004/12/23')
         terms = find_solar_terms_between(startDate, endDate)
         for x in terms:
             print(Date(x))
