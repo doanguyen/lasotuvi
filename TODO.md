@@ -2,7 +2,7 @@
 
 * [ ] Viết lại test, sử dụng hypothesis
 * [ ] Viết hàm chuyển đổi âm-dương lịch dựa trên dữ liệu của nasa
-* [ ] Viết module cho django
+* [x] Viết module cho django
 * [ ] optional typing using mypy
 * [x] Tạo ảnh lá số bằng python
 * [x] Xử lý thiên bàn cho chuẩn
