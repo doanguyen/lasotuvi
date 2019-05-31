@@ -125,28 +125,28 @@ class Sao(object):
 
 
 class TuVi(Sao):
-    id = 1  # type: ignore
-    ten = "Tử vi"  # type: ignore
+    id = 1
+    ten = "Tử vi"
     hanh = Hanh.THO
     loai = Tinh.CHINH_TINH.value
-    phuong_vi = "Đế tinh"  # type: ignore
+    phuong_vi = "Đế tinh"
     am_duong = AmDuong.DUONG
-    vong_trang_sinh = 0  # type: ignore
+    vong_trang_sinh = 0
 
 
 class LiemTrinh(Sao):
-    id = 2  # type: ignore
-    ten = "Liêm trinh"  # type: ignore
+    id = 2
+    ten = "Liêm trinh"
     hanh = Hanh.HOA
     loai = Tinh.CHINH_TINH.value
-    phuong_vi = "Bắc đẩu tinh"  # type: ignore
+    phuong_vi = "Bắc đẩu tinh"
     am_duong = AmDuong.DUONG
-    vong_trang_sinh = 0  # type: ignore
+    vong_trang_sinh = 0
 
 
 class ThienDong(Sao):
     # saoThienDong = Sao(3, "Thiên đồng", "T", 1, "Bắc đẩu tinh", 1, 0)
-    id = 3  # type: ignore
+    id = 3
     ten = "Thiên đồng"
     hanh = Hanh.THUY
     loai = Tinh.CHINH_TINH

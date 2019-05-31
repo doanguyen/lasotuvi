@@ -6,20 +6,21 @@ Module tính lịch sử dụng thư viện PyEphem  <http://rhodesmill.org/pyep
 
 I. Đổi lịch dương sang âm
 1. xác định có phải năm nhuận hay ko? Bằng cách:
-    Ví dụ năm cần xác định là 1984, tìm Sóc A (ngay trước Đông chí 1983) và Sóc B (ngay trước Đông chí 1984). Nếu khoảng cách giữa Sóc A và Sóc B lớn hơn 365 ngày thì năm 1984 là năm nhuận.
-
+    Ví dụ năm cần xác định là 1984,
+    tìm Sóc A (ngay trước Đông chí 1983) và Sóc B (ngay trước Đông chí 1984).
+    Nếu khoảng cách giữa Sóc A và Sóc B lớn hơn 365 ngày thì năm 1984
+    là năm nhuận.
 """
-
+import types
 from datetime import date, datetime
 from itertools import tee
-from math import ceil, floor
+from math import floor
 from typing import Tuple, Optional, Union, List
 
 import ephem
 
 from lasotuvi.ErrorHandling import InputInvalidate
 
-LUNAR_contract = Tuple[ephem.Date, bool]  # [date, thang_nhuan]
 
 
 def find_lunar_month_between(previousWinterSolstice, nextWinterSolstice):
@@ -27,7 +28,7 @@ def find_lunar_month_between(previousWinterSolstice, nextWinterSolstice):
 
 
 def s2l(solar_datetime: ephem.Date, timezone: Optional[int] = 7,
-        location: Optional[ephem.Observer] = None) -> LUNAR_contract:
+        location: Optional[ephem.Observer] = None) -> Tuple[ephem.Date, bool]:
     """
     Chuyển đổi từ ngày dương lịch sang âm lịch
     @param solar_datetime: ngày,tháng năm giờ dương lịch
@@ -55,16 +56,18 @@ def s2l(solar_datetime: ephem.Date, timezone: Optional[int] = 7,
 
     lunar_day = find_lunar_day(solar_datetime, timezone, location)
 
-    lunar_month, lunar_leap = find_lunar_month(solar_datetime, timezone, location)
+    lunar_month, lunar_leap = find_lunar_month(
+        solar_datetime, timezone, location)
 
     lunar_year = find_lunar_year(solar_datetime, timezone, location)
 
-    lunar_datetime = ephem.Date(datetime(lunar_year, lunar_month, lunar_day, lunar_hour))
+    lunar_datetime = ephem.Date(
+        datetime(lunar_year, lunar_month, lunar_day, lunar_hour))
 
     return lunar_datetime, lunar_leap
 
 
-def find_lunar_year(solar_datetime: ephem.Date, timzone: int = None, location: ephem.Observer = None):
+def find_lunar_year(solar_datetime: ephem.Date, timezone: int = None, location: ephem.Observer = None):
     if (solar_datetime - ephem.previous_winter_solstice(solar_datetime) < 4 * 29.5) \
             and solar_datetime.datetime().month >= 11:
         return solar_datetime.datetime().year - 1
@@ -100,26 +103,30 @@ def find_lunar_month(solar_datetime, timzone: int = None, location: ephem.Observ
         raise NotImplemented
     leap_month = False
     previous_winter_solstice = ephem.previous_winter_solstice(solar_datetime)
-    lunar_day_diff = (solar_datetime - ephem.previous_new_moon(previous_winter_solstice))
+    lunar_day_diff = (
+            solar_datetime - ephem.previous_new_moon(previous_winter_solstice))
     # print("Lunar day diff", lunar_day_diff, "days")
     lunar_month = floor(lunar_day_diff / 29.5) + 11
 
     if is_leap_year(solar_datetime):
-        solar_year_beginning = ephem.Date(datetime(solar_datetime.datetime().year, 1, 1, 0, 0))
-        lunar_year_beginning = ephem.previous_new_moon(ephem.previous_winter_solstice(solar_year_beginning))
-        lunar_year_end = ephem.previous_new_moon(ephem.next_winter_solstice(solar_year_beginning))
-        list_major_terms = find_solar_terms_between(lunar_year_beginning, lunar_year_end)
-        list_lunar_month_beginning = find_new_moon_between(lunar_year_beginning, lunar_year_end)
-        month_without_major_term = lunar_month_without_major_term(list_major_terms, list_lunar_month_beginning)
+        solar_year_beginning = ephem.Date(
+            datetime(solar_datetime.datetime().year, 1, 1, 0, 0))
+        lunar_year_beginning = ephem.previous_new_moon(
+            ephem.previous_winter_solstice(solar_year_beginning))
+        lunar_year_end = ephem.previous_new_moon(
+            ephem.next_winter_solstice(solar_year_beginning))
+        list_major_terms = find_solar_terms_between(
+            lunar_year_beginning, lunar_year_end)
+        list_lunar_month_beginning = find_new_moon_between(
+            lunar_year_beginning, lunar_year_end)
+        month_without_major_term = lunar_month_without_major_term(
+            list_major_terms, list_lunar_month_beginning)
 
         if month_without_major_term:
             early_month, end_of_month = month_without_major_term
             leap_month_diff = (early_month - lunar_year_beginning)
-            # print("Leap month diff", leap_month_diff)
-
             if leap_month_diff >= 3 * 30:
                 leap_month = floor(leap_month_diff / 30) - 1
-            # print(early_month, "LARGER", leap_month_diff)
             if lunar_day_diff > leap_month_diff:
                 lunar_month -= 1
 
@@ -132,7 +139,8 @@ def find_lunar_month(solar_datetime, timzone: int = None, location: ephem.Observ
 def correct_local_time(solar_datetime: ephem.Date, timezone: int = None,
                        location: Optional[ephem.Observer] = None) -> ephem.Date:
     if timezone:
-        solar_datetime += timezone * ephem.hour  # so we are working in the correct timezone
+        # so we are working in the correct timezone
+        solar_datetime += timezone * ephem.hour
     if location:
         location.date = solar_datetime
         solar_datetime = location.sidereal_time()
@@ -152,7 +160,7 @@ def find_lunar_day(local_datetime: ephem.Date, timezone: int = None, location: e
         previous_new_moon += (timezone * ephem.hour)
     if location:
         raise NotImplemented
-    lunar_day = floor(local_datetime- ephem.Date(previous_new_moon)) + 1
+    lunar_day = floor(local_datetime - ephem.Date(previous_new_moon)) + 1
     return lunar_day
 
 
@@ -212,18 +220,18 @@ def find_solar_terms_between(start_date: ephem.Date, end_date: ephem.Date) -> li
     return solar_terms
 
 
-def when_is_sun_at_degrees_longitude(date: date, degrees: int) -> ephem.Date:
+def when_is_sun_at_degrees_longitude(given_date: date, degrees: int) -> ephem.Date:
     # Thanks to Brandon Rhode @ https://answers.launchpad.net/pyephem/+question/110832
     # Find out the sun's current longitude.
 
-    sun = ephem.Sun(date)
+    sun = ephem.Sun(given_date)
     current_longitude = sun.hlong - ephem.pi
 
     # Find approximately the right time of year.
 
     target_longitude = degrees * ephem.degree
     difference = (target_longitude - current_longitude) % ephem.twopi
-    t0 = date + 365.25 * difference / ephem.twopi
+    t0 = given_date + 365.25 * difference / ephem.twopi
 
     # Zero in on the exact moment.
 
