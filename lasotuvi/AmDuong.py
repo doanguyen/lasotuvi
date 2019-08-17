@@ -5,216 +5,54 @@
 
 from lasotuvi.Lich_HND import S2L, L2S, jdFromDate
 
-AM = -1
-DUONG = 1
+thienCan = [{"id": 0, "chuCaiDau": None, "tenCan": None, "nguHanh": None, "nguHanhID": None,
+    "vitriDiaBan": None, 'amDuong': None},
+    {"id": 1, "chuCaiDau": "G", "tenCan": "Giáp", "nguHanh": "M", "nguHanhID": 2, "vitriDiaBan": 3,
+        'amDuong': 1},
+    {"id": 2, "chuCaiDau": "A", "tenCan": "Ất", "nguHanh": "M", "nguHanhID": 2, "vitriDiaBan": 4,
+        'amDuong': -1},
+    {"id": 3, "chuCaiDau": "B", "tenCan": "Bính", "nguHanh": "H", "nguHanhID": 4, "vitriDiaBan": 6,
+        'amDuong': 1},
+    {"id": 4, "chuCaiDau": "D", "tenCan": "Đinh", "nguHanh": "H", "nguHanhID": 4, "vitriDiaBan": 7,
+        'amDuong': -1},
+    {"id": 5, "chuCaiDau": "M", "tenCan": "Mậu", "nguHanh": "O", "nguHanhID": 5, "vitriDiaBan": 6,
+        'amDuong': 1},
+    {"id": 6, "chuCaiDau": "K", "tenCan": "Kỷ", "nguHanh": "O", "nguHanhID": 5, "vitriDiaBan": 7,
+        'amDuong': -1},
+    {"id": 7, "chuCaiDau": "C", "tenCan": "Canh", "nguHanh": "K", "nguHanhID": 1, "vitriDiaBan": 9,
+        'amDuong': 1},
+    {"id": 8, "chuCaiDau": "T", "tenCan": "Tân", "nguHanh": "K", "nguHanhID": 1, "vitriDiaBan": 10,
+        'amDuong': -1},
+    {"id": 9, "chuCaiDau": "N", "tenCan": "Nhâm", "nguHanh": "T", "nguHanhID": 3,
+        "vitriDiaBan": 12, 'amDuong': 1},
+    {"id": 10, "chuCaiDau": "Q", "tenCan": "Quý", "nguHanh": "T", "nguHanhID": 3, "vitriDiaBan": 1,
+        'amDuong': -1}, ]
 
-thienCan = [
-    {
-        "id": 0,
-        "chuCaiDau": None,
-        "tenCan": None,
-        "nguHanh": None,
-        "nguHanhID": None,
-        "vitriDiaBan": None,
-        'amDuong': None
-    },
-    {
-        "id": 1,
-        "chuCaiDau": "G",
-        "tenCan": "Giáp",
-        "nguHanh": "M",
-        "nguHanhID": 2,
-        "vitriDiaBan": 3,
-        'amDuong': 1
-    },
-    {
-        "id": 2,
-        "chuCaiDau": "A",
-        "tenCan": "Ất",
-        "nguHanh": "M",
-        "nguHanhID": 2,
-        "vitriDiaBan": 4,
-        'amDuong': -1
-    },
-    {
-        "id": 3,
-        "chuCaiDau": "B",
-        "tenCan": "Bính",
-        "nguHanh": "H",
-        "nguHanhID": 4,
-        "vitriDiaBan": 6,
-        'amDuong': 1
-    },
-    {
-        "id": 4,
-        "chuCaiDau": "D",
-        "tenCan": "Đinh",
-        "nguHanh": "H",
-        "nguHanhID": 4,
-        "vitriDiaBan": 7,
-        'amDuong': -1
-    },
-    {
-        "id": 5,
-        "chuCaiDau": "M",
-        "tenCan": "Mậu",
-        "nguHanh": "O",
-        "nguHanhID": 5,
-        "vitriDiaBan": 6,
-        'amDuong': 1
-    },
-    {
-        "id": 6,
-        "chuCaiDau": "K",
-        "tenCan": "Kỷ",
-        "nguHanh": "O",
-        "nguHanhID": 5,
-        "vitriDiaBan": 7,
-        'amDuong': -1
-    },
-    {
-        "id": 7,
-        "chuCaiDau": "C",
-        "tenCan": "Canh",
-        "nguHanh": "K",
-        "nguHanhID": 1,
-        "vitriDiaBan": 9,
-        'amDuong': 1
-    },
-    {
-        "id": 8,
-        "chuCaiDau": "T",
-        "tenCan": "Tân",
-        "nguHanh": "K",
-        "nguHanhID": 1,
-        "vitriDiaBan": 10,
-        'amDuong': -1
-    },
-    {
-        "id": 9,
-        "chuCaiDau": "N",
-        "tenCan": "Nhâm",
-        "nguHanh": "T",
-        "nguHanhID": 3,
-        "vitriDiaBan": 12,
-        'amDuong': 1
-    },
-    {
-        "id": 10,
-        "chuCaiDau": "Q",
-        "tenCan": "Quý",
-        "nguHanh": "T",
-        "nguHanhID": 3,
-        "vitriDiaBan": 1,
-        'amDuong': -1
-    },
-]
-
-
-diaChi = [
-    {
-        "id": 0,
-        "tenChi": "Hem có",
-        "tenHanh": ":D",
-        "amDuong": 0
-    },
-    {
-        "id": 1,
-        "tenChi": "Tý",
-        "tenHanh": "T",
-        "menhChu": "Tham lang",
-        "thanChu": "Linh tinh",
-        "amDuong": 1
-    },
-    {
-        "id": 2,
-        "tenChi": "Sửu",
-        "tenHanh": "O",
-        "menhChu": "Cự môn",
-        "thanChu": "Thiên tướng",
-        "amDuong": -1
-    },
-    {
-        "id": 3,
-        "tenChi": "Dần",
-        "tenHanh": "M",
-        "menhChu": "Lộc tồn",
-        "thanChu": "Thiên lương",
-        "amDuong": 1
-    },
-    {
-        "id": 4,
-        "tenChi": "Mão",
-        "tenHanh": "M",
-        "menhChu": "Văn khúc",
-        "thanChu": "Thiên đồng",
-        "amDuong": -1
-    },
-    {
-        "id": 5,
-        "tenChi": "Thìn",
-        "tenHanh": "O",
-        "menhChu": "Liêm trinh",
-        "thanChu": "Văn xương",
-        "amDuong": 1
-    },
-    {
-        "id": 6,
-        "tenChi": "Tỵ",
-        "tenHanh": "H",
-        "menhChu": "Vũ khúc",
-        "thanChu": "Thiên cơ",
-        "amDuong": -1
-    },
-    {
-        "id": 7,
-        "tenChi": "Ngọ",
-        "tenHanh": "H",
-        "menhChu": "Phá quân",
-        "thanChu": "Hỏa tinh",
-        "amDuong": 1
-    },
-    {
-        "id": 8,
-        "tenChi": "Mùi",
-        "tenHanh": "O",
-        "menhChu": "Vũ khúc",
-        "thanChu": "Thiên tướng",
-        "amDuong": -1
-    },
-    {
-        "id": 9,
-        "tenChi": "Thân",
-        "tenHanh": "K",
-        "menhChu": "Liêm trinh",
-        "thanChu": "Thiên lương",
-        "amDuong": 1
-    },
-    {
-        "id": 10,
-        "tenChi": "Dậu",
-        "tenHanh": "K",
-        "menhChu": "Văn khúc",
-        "thanChu": "Thiên đồng",
-        "amDuong": -1
-    },
-    {
-        "id": 11,
-        "tenChi": "Tuất",
-        "tenHanh": "O",
-        "menhChu": "Lộc tồn",
-        "thanChu": "Văn xương",
-        "amDuong": 1
-    },
-    {
-        "id": 12,
-        "tenChi": "Hợi",
-        "tenHanh": "T",
-        "menhChu": "Cự môn",
-        "thanChu": "Thiên cơ",
-        "amDuong": -1
-    }
-]
+diaChi = [{"id": 0, "tenChi": "Hem có", "tenHanh": ":D", "amDuong": 0},
+    {"id": 1, "tenChi": "Tý", "tenHanh": "T", "menhChu": "Tham lang", "thanChu": "Linh tinh",
+        "amDuong": 1},
+    {"id": 2, "tenChi": "Sửu", "tenHanh": "O", "menhChu": "Cự môn", "thanChu": "Thiên tướng",
+        "amDuong": -1},
+    {"id": 3, "tenChi": "Dần", "tenHanh": "M", "menhChu": "Lộc tồn", "thanChu": "Thiên lương",
+        "amDuong": 1},
+    {"id": 4, "tenChi": "Mão", "tenHanh": "M", "menhChu": "Văn khúc", "thanChu": "Thiên đồng",
+        "amDuong": -1},
+    {"id": 5, "tenChi": "Thìn", "tenHanh": "O", "menhChu": "Liêm trinh", "thanChu": "Văn xương",
+        "amDuong": 1},
+    {"id": 6, "tenChi": "Tỵ", "tenHanh": "H", "menhChu": "Vũ khúc", "thanChu": "Thiên cơ",
+        "amDuong": -1},
+    {"id": 7, "tenChi": "Ngọ", "tenHanh": "H", "menhChu": "Phá quân", "thanChu": "Hỏa tinh",
+        "amDuong": 1},
+    {"id": 8, "tenChi": "Mùi", "tenHanh": "O", "menhChu": "Vũ khúc", "thanChu": "Thiên tướng",
+        "amDuong": -1},
+    {"id": 9, "tenChi": "Thân", "tenHanh": "K", "menhChu": "Liêm trinh", "thanChu": "Thiên lương",
+        "amDuong": 1},
+    {"id": 10, "tenChi": "Dậu", "tenHanh": "K", "menhChu": "Văn khúc", "thanChu": "Thiên đồng",
+        "amDuong": -1},
+    {"id": 11, "tenChi": "Tuất", "tenHanh": "O", "menhChu": "Lộc tồn", "thanChu": "Văn xương",
+        "amDuong": 1},
+    {"id": 12, "tenChi": "Hợi", "tenHanh": "T", "menhChu": "Cự môn", "thanChu": "Thiên cơ",
+        "amDuong": -1}]
 
 
 def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
@@ -235,8 +73,7 @@ def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
     """
     thangNhuan = 0
     # if nnnn > 1000 and nnnn < 3000 and nn > 0 and \
-    if nn > 0 and \
-       nn < 32 and tt < 13 and tt > 0:
+    if nn > 0 and nn < 32 and tt < 13 and tt > 0:
         if duongLich is True:
             [nn, tt, nnnn, thangNhuan] = S2L(nn, tt, nnnn, timeZone=timeZone)
         return [nn, tt, nnnn, thangNhuan]
@@ -296,8 +133,7 @@ def ngayThangNamCanChi(nn, tt, nnnn, duongLich=True, timeZone=7):
         TYPE: Description
     """
     if duongLich is True:
-        [nn, tt, nnnn, thangNhuan] = \
-            ngayThangNam(nn, tt, nnnn, timeZone=timeZone)
+        [nn, tt, nnnn, thangNhuan] = ngayThangNam(nn, tt, nnnn, timeZone=timeZone)
     # Can của tháng
     canThang = (nnnn * 12 + tt + 3) % 10 + 1
     # Can chi của năm
@@ -320,23 +156,17 @@ def nguHanh(tenHanh):
         Exception: Description
     """
     if tenHanh in ["Kim", "K"]:
-        return {"id": 1, "tenHanh": "Kim", "cuc": 4, "tenCuc": "Kim tứ Cục",
-                "css": "hanhKim"}
+        return {"id": 1, "tenHanh": "Kim", "cuc": 4, "tenCuc": "Kim tứ Cục", "css": "hanhKim"}
     elif tenHanh == "Moc" or tenHanh == "M":
-        return {"id": 2, "tenHanh": "Mộc", "cuc": 3, "tenCuc": "Mộc tam Cục",
-                "css": "hanhMoc"}
+        return {"id": 2, "tenHanh": "Mộc", "cuc": 3, "tenCuc": "Mộc tam Cục", "css": "hanhMoc"}
     elif tenHanh == "Thuy" or tenHanh == "T":
-        return {"id": 3, "tenHanh": "Thủy", "cuc": 2, "tenCuc": "Thủy nhị Cục",
-                "css": "hanhThuy"}
+        return {"id": 3, "tenHanh": "Thủy", "cuc": 2, "tenCuc": "Thủy nhị Cục", "css": "hanhThuy"}
     elif tenHanh == "Hoa" or tenHanh == "H":
-        return {"id": 4, "tenHanh": "Hỏa", "cuc": 6, "tenCuc": "Hỏa lục Cục",
-                "css": "hanhHoa"}
+        return {"id": 4, "tenHanh": "Hỏa", "cuc": 6, "tenCuc": "Hỏa lục Cục", "css": "hanhHoa"}
     elif tenHanh == "Tho" or tenHanh == "O":
-        return {"id": 5, "tenHanh": "Thổ", "cuc": 5, "tenCuc": "Thổ ngũ Cục",
-                "css": "hanhTho"}
+        return {"id": 5, "tenHanh": "Thổ", "cuc": 5, "tenCuc": "Thổ ngũ Cục", "css": "hanhTho"}
     else:
-        raise Exception(
-            "Tên Hành phải thuộc Kim (K), Mộc (M), Thủy (T), \
+        raise Exception("Tên Hành phải thuộc Kim (K), Mộc (M), Thủy (T), \
              Hỏa (H) hoặc Thổ (O)")
 
 
@@ -349,14 +179,9 @@ def sinhKhac(hanh1, hanh2):
     Returns:
         TYPE: Description
     """
-    matranSinhKhac = [
-        [None, None, None, None, None, None],
-        [None, 0, -1, 1, -1j, 1j],
-        [None, -1j, 0, 1j, 1, -1],
-        [None, 1j, 1, 0, 1, -1j],
-        [None, -1, 1j, -1j, 0, 1],
-        [None, 1, -1j, -1, 1j, 0]
-    ]
+    matranSinhKhac = [[None, None, None, None, None, None], [None, 0, -1, 1, -1j, 1j],
+        [None, -1j, 0, 1j, 1, -1], [None, 1j, 1, 0, 1, -1j], [None, -1, 1j, -1j, 0, 1],
+        [None, 1, -1j, -1, 1j, 0]]
     return matranSinhKhac[hanh1][hanh2]
 
 
@@ -370,39 +195,15 @@ def nguHanhNapAm(diaChi, thienCan, xuatBanMenh=False):
     Returns:
         Trả về chữ viết tắt Hành của năm (K, T, H, O, M)
     """
-    banMenh = {
-        "K1": "HẢI TRUNG KIM",
-        "T1": "GIÁNG HẠ THỦY",
-        "H1": "TÍCH LỊCH HỎA",
-        "O1": "BÍCH THƯỢNG THỔ",
-        "M1": "TANG ÐỐ MỘC",
-        "T2": "ÐẠI KHÊ THỦY",
-        "H2": "LƯ TRUNG HỎA",
-        "O2": "THÀNH ÐẦU THỔ",
-        "M2": "TÒNG BÁ MỘC",
-        "K2": "KIM BẠCH KIM",
-        "H3": "PHÚ ÐĂNG HỎA",
-        "O3": "SA TRUNG THỔ",
-        "M3": "ÐẠI LÂM MỘC",
-        "K3": "BẠCH LẠP KIM",
-        "T3": "TRƯỜNG LƯU THỦY",
-        "K4": "SA TRUNG KIM",
-        "T4": "THIÊN HÀ THỦY",
-        "H4": "THIÊN THƯỢNG HỎA",
-        "O4": "LỘ BÀN THỔ",
-        "M4": "DƯƠNG LIỄU MỘC",
-        "T5": "TRUYỀN TRUNG THỦY",
-        "H5": "SƠN HẠ HỎA",
-        "O5": "ÐẠI TRẠCH THỔ",
-        "M5": "THẠCH LỰU MỘC",
-        "K5": "KIẾM PHONG KIM",
-        "H6": "SƠN ÐẦU HỎA",
-        "O6": "ỐC THƯỢNG THỔ",
-        "M6": "BÌNH ÐỊA MỘC",
-        "K6": "XOA XUYẾN KIM",
-        "T6": "ÐẠI HẢI THỦY"}
-    matranNapAm = [
-        [0, "G", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "N", "Q"],
+    banMenh = {"K1": "HẢI TRUNG KIM", "T1": "GIÁNG HẠ THỦY", "H1": "TÍCH LỊCH HỎA",
+        "O1": "BÍCH THƯỢNG THỔ", "M1": "TANG ÐỐ MỘC", "T2": "ÐẠI KHÊ THỦY", "H2": "LƯ TRUNG HỎA",
+        "O2": "THÀNH ÐẦU THỔ", "M2": "TÒNG BÁ MỘC", "K2": "KIM BẠCH KIM", "H3": "PHÚ ÐĂNG HỎA",
+        "O3": "SA TRUNG THỔ", "M3": "ÐẠI LÂM MỘC", "K3": "BẠCH LẠP KIM", "T3": "TRƯỜNG LƯU THỦY",
+        "K4": "SA TRUNG KIM", "T4": "THIÊN HÀ THỦY", "H4": "THIÊN THƯỢNG HỎA", "O4": "LỘ BÀN THỔ",
+        "M4": "DƯƠNG LIỄU MỘC", "T5": "TRUYỀN TRUNG THỦY", "H5": "SƠN HẠ HỎA",
+        "O5": "ÐẠI TRẠCH THỔ", "M5": "THẠCH LỰU MỘC", "K5": "KIẾM PHONG KIM", "H6": "SƠN ÐẦU HỎA",
+        "O6": "ỐC THƯỢNG THỔ", "M6": "BÌNH ÐỊA MỘC", "K6": "XOA XUYẾN KIM", "T6": "ÐẠI HẢI THỦY"}
+    matranNapAm = [[0, "G", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "N", "Q"],
         [1, "K1", False, "T1", False, "H1", False, "O1", False, "M1", False],
         [2, False, "K1", False, "T1", False, "H1", False, "O1", False, "M1"],
         [3, "T2", False, "H2", False, "O2", False, "M2", False, "K2", False],
@@ -414,8 +215,7 @@ def nguHanhNapAm(diaChi, thienCan, xuatBanMenh=False):
         [9, "T5", False, "H5", False, "O5", False, "M5", False, "K5", False],
         [10, False, "T5", False, "H5", False, "O5", False, "M5", False, "K5"],
         [11, "H6", False, "O6", False, "M6", False, "K6", False, "T6", False],
-        [12, False, "H6", False, "O6", False, "M6", False, "K6", False, "T6"]
-    ]
+        [12, False, "H6", False, "O6", False, "M6", False, "K6", False, "T6"]]
     try:
         nh = matranNapAm[diaChi][thienCan]
         if nh[0] in ["K", "M", "T", "H", "O"]:

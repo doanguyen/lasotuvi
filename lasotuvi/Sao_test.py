@@ -1,10 +1,10 @@
 from unittest import TestCase
 
 from lasotuvi.Hanh import Hanh
-from lasotuvi.Sao import Sao, TuVi
-
+from lasotuvi.Sao import TuVi
 
 example = TuVi
+
 
 class TestSao(TestCase):
 
@@ -33,4 +33,3 @@ class TestSao(TestCase):
 
     def test_dac_tinh(self):
         self.assertTrue(True)
-

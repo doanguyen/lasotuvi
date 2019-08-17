@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import TypeVar
 
 
 class Hanh(Enum):
@@ -16,39 +17,14 @@ class Hanh(Enum):
     THO = O = 4
     MOC = M = 5
 
-    __hanh_data = {
-        KIM: {
-            'cuc': 4,
-            'ten_hanh': 'Kim',
-            'ten_cuc': "Kim Tứ Cục",
-            'css': 'hanhKim'
-        },
-        THUY: {
-            'cuc': 2,
-            'ten_hanh': 'Thủy',
-            'ten_cuc': "Thủy nhị Cục",
-            'css': 'hanhThuy'
-        },
-        HOA: {
-            'cuc': 6,
-            'ten_hanh': 'Hỏa',
-            'ten_cuc': "Hỏa lục Cục",
-            'css': 'hanhHoa'
-        },
-        THO: {
-            'cuc': 5,
-            'ten_hanh': 'Thổ',
-            'ten_cuc': "Thổ Ngũ Cục",
-            'css': 'hanhTho'
-        },
-        MOC: {
-            'cuc': 3,
-            'ten_hanh': 'Mộc',
-            'ten_cuc': "Mộc Tam Cục",
-            'css': 'hanhMoc'
-        }
+    __hanh_data = {KIM: {'cuc': 4, 'ten_hanh': 'Kim', 'ten_cuc': "Kim Tứ Cục", 'css': 'hanhKim'},
+                   THUY: {'cuc': 2, 'ten_hanh': 'Thủy', 'ten_cuc': "Thủy nhị Cục",
+                          'css': 'hanhThuy'},
+                   HOA: {'cuc': 6, 'ten_hanh': 'Hỏa', 'ten_cuc': "Hỏa lục Cục", 'css': 'hanhHoa'},
+                   THO: {'cuc': 5, 'ten_hanh': 'Thổ', 'ten_cuc': "Thổ Ngũ Cục", 'css': 'hanhTho'},
+                   MOC: {'cuc': 3, 'ten_hanh': 'Mộc', 'ten_cuc': "Mộc Tam Cục", 'css': 'hanhMoc'}
 
-    }
+                   }
 
     def __init__(self, hanh_id):
         self.id = hanh_id
@@ -74,3 +50,6 @@ class Hanh(Enum):
 
     def __str__(self):
         return self.name
+
+
+HanhVar = TypeVar("HanhVar", bound=Hanh)

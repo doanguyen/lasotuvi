@@ -11,7 +11,6 @@ class TestHanh(TestCase):
     def test_css_from_hanh(self):
         self.assertEqual(Hanh.KIM.css, 'hanhKim')
 
-
     def test_hanh_KIM_short_hand(self):
         self.assertEqual(Hanh.KIM, Hanh.K)
 
