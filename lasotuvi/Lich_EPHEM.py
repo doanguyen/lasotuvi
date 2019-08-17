@@ -11,7 +11,6 @@ I. Đổi lịch dương sang âm
     Nếu khoảng cách giữa Sóc A và Sóc B lớn hơn 365 ngày thì năm 1984
     là năm nhuận.
 """
-import types
 from datetime import date, datetime
 from itertools import tee
 from math import floor
@@ -20,7 +19,6 @@ from typing import Tuple, Optional, Union, List
 import ephem
 
 from lasotuvi.ErrorHandling import InputInvalidate
-
 
 
 def find_lunar_month_between(previousWinterSolstice, nextWinterSolstice):
@@ -56,20 +54,19 @@ def s2l(solar_datetime: ephem.Date, timezone: Optional[int] = 7,
 
     lunar_day = find_lunar_day(solar_datetime, timezone, location)
 
-    lunar_month, lunar_leap = find_lunar_month(
-        solar_datetime, timezone, location)
+    lunar_month, lunar_leap = find_lunar_month(solar_datetime, timezone, location)
 
     lunar_year = find_lunar_year(solar_datetime, timezone, location)
 
-    lunar_datetime = ephem.Date(
-        datetime(lunar_year, lunar_month, lunar_day, lunar_hour))
+    lunar_datetime = ephem.Date(datetime(lunar_year, lunar_month, lunar_day, lunar_hour))
 
     return lunar_datetime, lunar_leap
 
 
-def find_lunar_year(solar_datetime: ephem.Date, timezone: int = None, location: ephem.Observer = None):
-    if (solar_datetime - ephem.previous_winter_solstice(solar_datetime) < 4 * 29.5) \
-            and solar_datetime.datetime().month >= 11:
+def find_lunar_year(solar_datetime: ephem.Date, timezone: int = None,
+                    location: ephem.Observer = None):
+    if (solar_datetime - ephem.previous_winter_solstice(
+            solar_datetime) < 4 * 29.5) and solar_datetime.datetime().month >= 11:
         return solar_datetime.datetime().year - 1
     return solar_datetime.datetime().year
 
@@ -81,7 +78,8 @@ def pairwise(iterable):
     return zip(a, b)
 
 
-def lunar_month_without_major_term(list_major_terms: List, list_lunar_month_beginning: List) -> Optional[List]:
+def lunar_month_without_major_term(list_major_terms: List, list_lunar_month_beginning: List) -> \
+        Optional[List]:
     month_without_major_term = None
     for early_month, end_of_month in pairwise(list_lunar_month_beginning):
         major_term_inside_lunar_month = False
@@ -98,29 +96,25 @@ def lunar_month_without_major_term(list_major_terms: List, list_lunar_month_begi
     return month_without_major_term
 
 
-def find_lunar_month(solar_datetime, timzone: int = None, location: ephem.Observer = None) -> Tuple[int, bool]:
+def find_lunar_month(solar_datetime, timzone: int = None, location: ephem.Observer = None) -> \
+        Tuple[int, bool]:
     if location:
         raise NotImplemented
     leap_month = False
     previous_winter_solstice = ephem.previous_winter_solstice(solar_datetime)
-    lunar_day_diff = (
-            solar_datetime - ephem.previous_new_moon(previous_winter_solstice))
+    lunar_day_diff = (solar_datetime - ephem.previous_new_moon(previous_winter_solstice))
     # print("Lunar day diff", lunar_day_diff, "days")
     lunar_month = floor(lunar_day_diff / 29.5) + 11
 
     if is_leap_year(solar_datetime):
-        solar_year_beginning = ephem.Date(
-            datetime(solar_datetime.datetime().year, 1, 1, 0, 0))
+        solar_year_beginning = ephem.Date(datetime(solar_datetime.datetime().year, 1, 1, 0, 0))
         lunar_year_beginning = ephem.previous_new_moon(
             ephem.previous_winter_solstice(solar_year_beginning))
-        lunar_year_end = ephem.previous_new_moon(
-            ephem.next_winter_solstice(solar_year_beginning))
-        list_major_terms = find_solar_terms_between(
-            lunar_year_beginning, lunar_year_end)
-        list_lunar_month_beginning = find_new_moon_between(
-            lunar_year_beginning, lunar_year_end)
-        month_without_major_term = lunar_month_without_major_term(
-            list_major_terms, list_lunar_month_beginning)
+        lunar_year_end = ephem.previous_new_moon(ephem.next_winter_solstice(solar_year_beginning))
+        list_major_terms = find_solar_terms_between(lunar_year_beginning, lunar_year_end)
+        list_lunar_month_beginning = find_new_moon_between(lunar_year_beginning, lunar_year_end)
+        month_without_major_term = lunar_month_without_major_term(list_major_terms,
+                                                                  list_lunar_month_beginning)
 
         if month_without_major_term:
             early_month, end_of_month = month_without_major_term
@@ -147,7 +141,8 @@ def correct_local_time(solar_datetime: ephem.Date, timezone: int = None,
     return ephem.Date(solar_datetime)
 
 
-def find_lunar_day(local_datetime: ephem.Date, timezone: int = None, location: ephem.Observer = None) -> int:
+def find_lunar_day(local_datetime: ephem.Date, timezone: int = None,
+                   location: ephem.Observer = None) -> int:
     """
     Tìm ngày âm lịch của ngày dương lịch đã cho.
     :param local_datetime: ephem.Date
@@ -198,7 +193,7 @@ def day_in_lunar_year(solar_date: ephem.Date) -> Union[float, int]:
     return day_in_lunar_year
 
 
-def l2s(amlich: LUNAR_contract, location: ephem.Observer) -> LUNAR_contract:
+def l2s(amlich, location: ephem.Observer):
     return amlich
 
 

@@ -2,43 +2,17 @@
 """
 (c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
-from lasotuvi.AmDuong import (dichCung, ngayThangNam, ngayThangNamCanChi, nguHanh,
-                              nguHanhNapAm, thienCan, timCoThan, timCuc, timHoaLinh,
-                              timLuuTru, timPhaToai, timThienKhoi, timThienMa,
-                              timThienQuanThienPhuc, timTrangSinh, timTriet, timTuVi,
+from lasotuvi.AmDuong import (dichCung, ngayThangNam, ngayThangNamCanChi, nguHanh, thienCan,
+                              timCoThan, timCuc, timHoaLinh, timLuuTru, timPhaToai, timThienKhoi,
+                              timThienMa, timThienQuanThienPhuc, timTrangSinh, timTriet, timTuVi,
                               diaChi)
-from lasotuvi.Sao import (saoAnQuang, saoBachHo, saoBacSy, saoBatToa, saoBenh,
-                          saoBenhPhu, saoCoThan, saoCuMon, saoDaiHao, saoDaLa,
-                          saoDaoHoa, saoDauQuan, saoDeVuong, saoDiaGiai, saoDiaKhong,
-                          saoDiaKiep, saoDiaVong, saoDieuKhach, saoDuong, saoDuongPhu,
-                          saoGiaiThan, saoHoaCai, saoHoaKhoa, saoHoaKy, saoHoaLoc,
-                          saoHoaQuyen, saoHoaTinh, saoHongLoan, saoHuuBat, saoHyThan,
-                          saoKiepSat, saoKinhDuong, saoLamQuan, saoLiemTrinh,
-                          saoLinhTinh, saoLocTon, saoLongDuc, saoLongTri, saoLucSi,
-                          saoLuuHa, saoMo, saoMocDuc, saoNguyetDuc, saoPhaQuan,
-                          saoPhaToai, saoPhiLiem, saoPhongCao, saoPhucBinh, saoPhucDuc,
-                          saoPhuongCac, saoQuanDoi, saoQuanPhu2, saoQuanPhu3, saoQuaTu,
-                          saoQuocAn, saoSuy, saoTamThai, saoTangMon, saoTaPhu,
-                          saoTauThu, saoThai, saoThaiAm, saoThaiDuong, saoThaiPhu,
-                          saoThaiTue, saoThamLang, saoThanhLong, saoThatSat, saoThienCo,
-                          saoThienDong, saoThienDuc, saoThienGiai, saoThienHinh,
-                          saoThienHu, saoThienHy, saoThienKhoc, saoThienKhoi,
-                          saoThienKhong, saoThienLa, saoThienLuong, saoThienMa,
-                          saoThienPhu, saoThienPhuc, saoThienQuan, saoThienQuy,
-                          saoThienRieu, saoThienSu, saoThienTai, saoThienTho,
-                          saoThienThuong, saoThienTru, saoThienTuong, saoThienViet,
-                          saoThienY, saoThieuAm, saoThieuDuong, saoTieuHao,
-                          saoTrangSinh, saoTrucPhu, saoTu, saoTuePha, saoTuongQuan,
-                          saoTuPhu, saoTuVi, saoTuyet, saoVanKhuc, saoVanTinh,
-                          saoVanXuong, saoVuKhuc)
+from lasotuvi.Sao import *
 
 
 def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     if duongLich is True:
-        nn, tt, nnnn, thangNhuan = \
-            ngayThangNam(nn, tt, nnnn, duongLich, timeZone)
-    canThang, canNam, chiNam = \
-        ngayThangNamCanChi(nn, tt, nnnn, False, timeZone)
+        nn, tt, nnnn, thangNhuan = ngayThangNam(nn, tt, nnnn, duongLich, timeZone)
+    canThang, canNam, chiNam = ngayThangNamCanChi(nn, tt, nnnn, False, timeZone)
 
     diaBan = diaBan(tt, gioSinh)
 
@@ -64,125 +38,125 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
 
     # Bắt đầu an Tử vi tinh hệ
     viTriTuVi = timTuVi(cucSo, nn)
-    diaBan.nhapSao(viTriTuVi, saoTuVi)
+    diaBan.nhapSao(viTriTuVi, TuVi)
 
     viTriLiemTrinh = dichCung(viTriTuVi, 4)
-    diaBan.nhapSao(viTriLiemTrinh, saoLiemTrinh)
+    diaBan.nhapSao(viTriLiemTrinh, LiemTrinh)
 
     viTriThienDong = dichCung(viTriTuVi, 7)
-    diaBan.nhapSao(viTriThienDong, saoThienDong)
+    diaBan.nhapSao(viTriThienDong, ThienDong)
 
     viTriVuKhuc = dichCung(viTriTuVi, 8)
-    diaBan.nhapSao(viTriVuKhuc, saoVuKhuc)
+    diaBan.nhapSao(viTriVuKhuc, VuKhuc)
 
     vitriThaiDuong = dichCung(viTriTuVi, 9)
-    diaBan.nhapSao(vitriThaiDuong, saoThaiDuong)
+    diaBan.nhapSao(vitriThaiDuong, ThaiDuong)
 
     viTriThienCo = dichCung(viTriTuVi, 11)
-    diaBan.nhapSao(viTriThienCo, saoThienCo)
+    diaBan.nhapSao(viTriThienCo, ThienCo)
 
     # Thiên phủ tinh hệ
     # viTriTuVi = 4
     viTriThienPhu = dichCung(3, 3 - viTriTuVi)
-    diaBan.nhapSao(viTriThienPhu, saoThienPhu)
+    diaBan.nhapSao(viTriThienPhu, ThienPhu)
 
     viTriThaiAm = dichCung(viTriThienPhu, 1)
-    diaBan.nhapSao(viTriThaiAm, saoThaiAm)
+    diaBan.nhapSao(viTriThaiAm, ThaiAm)
 
     viTriThamLang = dichCung(viTriThienPhu, 2)
-    diaBan.nhapSao(viTriThamLang, saoThamLang)
+    diaBan.nhapSao(viTriThamLang, ThamLang)
 
     viTriCuMon = dichCung(viTriThienPhu, 3)
-    diaBan.nhapSao(viTriCuMon, saoCuMon)
+    diaBan.nhapSao(viTriCuMon, CuMon)
 
     viTriThienTuong = dichCung(viTriThienPhu, 4)
-    diaBan.nhapSao(viTriThienTuong, saoThienTuong)
+    diaBan.nhapSao(viTriThienTuong, ThienTuong)
 
     viTriThienLuong = dichCung(viTriThienPhu, 5)
-    diaBan.nhapSao(viTriThienLuong, saoThienLuong)
+    diaBan.nhapSao(viTriThienLuong, ThienLuong)
 
     viTriThatSat = dichCung(viTriThienPhu, 6)
-    diaBan.nhapSao(viTriThatSat, saoThatSat)
+    diaBan.nhapSao(viTriThatSat, ThatSat)
 
     viTriPhaQuan = dichCung(viTriThienPhu, 10)
-    diaBan.nhapSao(viTriPhaQuan, saoPhaQuan)
+    diaBan.nhapSao(viTriPhaQuan, PhaQuan)
 
     # Vòng Lộc tồn
     # Vị trí sao Lộc tồn ở Can của năm sinh trên địa bàn
     #  sao Bác sỹ ở cùng cung với Lộc tồn
     viTriLocTon = thienCan[canNam]['vitriDiaBan']
-    diaBan.nhapSao(viTriLocTon, saoLocTon, saoBacSy)
+    diaBan.nhapSao(viTriLocTon, LocTon, BacSy)
 
     amDuongNamNu = gioiTinh * amDuongNamSinh
     viTriLucSi = dichCung(viTriLocTon, 1 * amDuongNamNu)
-    diaBan.nhapSao(viTriLucSi, saoLucSi)
+    diaBan.nhapSao(viTriLucSi, LucSi)
 
     viTriThanhLong = dichCung(viTriLocTon, 2 * amDuongNamNu)
-    diaBan.nhapSao(viTriThanhLong, saoThanhLong)
+    diaBan.nhapSao(viTriThanhLong, ThanhLong)
 
     viTriTieuHao = dichCung(viTriLocTon, 3 * amDuongNamNu)
-    diaBan.nhapSao(viTriTieuHao, saoTieuHao)
+    diaBan.nhapSao(viTriTieuHao, TieuHao)
 
     viTriTuongQuan = dichCung(viTriLocTon, 4 * amDuongNamNu)
-    diaBan.nhapSao(viTriTuongQuan, saoTuongQuan)
+    diaBan.nhapSao(viTriTuongQuan, TuongQuan)
 
     viTriTauThu = dichCung(viTriLocTon, 5 * amDuongNamNu)
-    diaBan.nhapSao(viTriTauThu, saoTauThu)
+    diaBan.nhapSao(viTriTauThu, TauThu)
 
     viTriPhiLiem = dichCung(viTriLocTon, 6 * amDuongNamNu)
-    diaBan.nhapSao(viTriPhiLiem, saoPhiLiem)
+    diaBan.nhapSao(viTriPhiLiem, PhiLiem)
 
     viTriHyThan = dichCung(viTriLocTon, 7 * amDuongNamNu)
-    diaBan.nhapSao(viTriHyThan, saoHyThan)
+    diaBan.nhapSao(viTriHyThan, HyThan)
 
     viTriBenhPhu = dichCung(viTriLocTon, 8 * amDuongNamNu)
-    diaBan.nhapSao(viTriBenhPhu, saoBenhPhu)
+    diaBan.nhapSao(viTriBenhPhu, BenhPhu)
 
     viTriDaiHao = dichCung(viTriLocTon, 9 * amDuongNamNu)
-    diaBan.nhapSao(viTriDaiHao, saoDaiHao)
+    diaBan.nhapSao(viTriDaiHao, DaiHao)
 
     viTriPhucBinh = dichCung(viTriLocTon, 10 * amDuongNamNu)
-    diaBan.nhapSao(viTriPhucBinh, saoPhucBinh)
+    diaBan.nhapSao(viTriPhucBinh, PhucBinh)
 
     viTriQuanPhu2 = dichCung(viTriLocTon, 11 * amDuongNamNu)
-    diaBan.nhapSao(viTriQuanPhu2, saoQuanPhu2)
+    diaBan.nhapSao(viTriQuanPhu2, QuanPhu2)
 
     # Vòng Địa chi - Thái tuế
     viTriThaiTue = chiNam
-    diaBan.nhapSao(viTriThaiTue, saoThaiTue)
+    diaBan.nhapSao(viTriThaiTue, ThaiTue)
 
     viTriThieuDuong = dichCung(viTriThaiTue, 1)
-    diaBan.nhapSao(viTriThieuDuong, saoThieuDuong, saoThienKhong)
+    diaBan.nhapSao(viTriThieuDuong, ThieuDuong, ThienKhong)
 
     viTriTangMon = dichCung(viTriThaiTue, 2)
-    diaBan.nhapSao(viTriTangMon, saoTangMon)
+    diaBan.nhapSao(viTriTangMon, TangMon)
 
     viTriThieuAm = dichCung(viTriThaiTue, 3)
-    diaBan.nhapSao(viTriThieuAm, saoThieuAm)
+    diaBan.nhapSao(viTriThieuAm, ThieuAm)
 
     viTriQuanPhu3 = dichCung(viTriThaiTue, 4)
-    diaBan.nhapSao(viTriQuanPhu3, saoQuanPhu3)
+    diaBan.nhapSao(viTriQuanPhu3, QuanPhu3)
 
     viTriTuPhu = dichCung(viTriThaiTue, 5)
-    diaBan.nhapSao(viTriTuPhu, saoTuPhu, saoNguyetDuc)
+    diaBan.nhapSao(viTriTuPhu, TuPhu, NguyetDuc)
 
     viTriTuePha = dichCung(viTriThaiTue, 6)
-    diaBan.nhapSao(viTriTuePha, saoTuePha)
+    diaBan.nhapSao(viTriTuePha, TuePha)
 
     viTriLongDuc = dichCung(viTriThaiTue, 7)
-    diaBan.nhapSao(viTriLongDuc, saoLongDuc)
+    diaBan.nhapSao(viTriLongDuc, LongDuc)
 
     viTriBachHo = dichCung(viTriThaiTue, 8)
-    diaBan.nhapSao(viTriBachHo, saoBachHo)
+    diaBan.nhapSao(viTriBachHo, BachHo)
 
     viTriPhucDuc = dichCung(viTriThaiTue, 9)
-    diaBan.nhapSao(viTriPhucDuc, saoPhucDuc, saoThienDuc)
+    diaBan.nhapSao(viTriPhucDuc, PhucDuc, ThienDuc)
 
     viTriDieuKhach = dichCung(viTriThaiTue, 10)
-    diaBan.nhapSao(viTriDieuKhach, saoDieuKhach)
+    diaBan.nhapSao(viTriDieuKhach, DieuKhach)
 
     viTriTrucPhu = dichCung(viTriThaiTue, 11)
-    diaBan.nhapSao(viTriTrucPhu, saoTrucPhu)
+    diaBan.nhapSao(viTriTrucPhu, TrucPhu)
 
     #  Vòng ngũ hành cục Tràng sinh
     # !!! Đã sửa !!! *LƯU Ý Phần này đã sửa* Theo cụ Thiên Lương: Nam -> Thuận,
@@ -191,85 +165,84 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     # chiều nghịch
 
     viTriTrangSinh = timTrangSinh(cucSo)
-    diaBan.nhapSao(viTriTrangSinh, saoTrangSinh)
+    diaBan.nhapSao(viTriTrangSinh, TrangSinh)
 
     viTriMocDuc = dichCung(viTriTrangSinh, amDuongNamNu * 1)
-    diaBan.nhapSao(viTriMocDuc, saoMocDuc)
+    diaBan.nhapSao(viTriMocDuc, MocDuc)
 
     viTriQuanDoi = dichCung(viTriTrangSinh, amDuongNamNu * 2)
-    diaBan.nhapSao(viTriQuanDoi, saoQuanDoi)
+    diaBan.nhapSao(viTriQuanDoi, QuanDoi)
 
     viTriLamQuan = dichCung(viTriTrangSinh, amDuongNamNu * 3)
-    diaBan.nhapSao(viTriLamQuan, saoLamQuan)
+    diaBan.nhapSao(viTriLamQuan, LamQuan)
 
     viTriDeVuong = dichCung(viTriTrangSinh, amDuongNamNu * 4)
-    diaBan.nhapSao(viTriDeVuong, saoDeVuong)
+    diaBan.nhapSao(viTriDeVuong, DeVuong)
 
     viTriSuy = dichCung(viTriTrangSinh, amDuongNamNu * 5)
-    diaBan.nhapSao(viTriSuy, saoSuy)
+    diaBan.nhapSao(viTriSuy, Suy)
 
     viTriBenh = dichCung(viTriTrangSinh, amDuongNamNu * 6)
-    diaBan.nhapSao(viTriBenh, saoBenh)
+    diaBan.nhapSao(viTriBenh, Benh)
 
     viTriTu = dichCung(viTriTrangSinh, amDuongNamNu * 7)
-    diaBan.nhapSao(viTriTu, saoTu)
+    diaBan.nhapSao(viTriTu, Tu)
 
     viTriMo = dichCung(viTriTrangSinh, amDuongNamNu * 8)
-    diaBan.nhapSao(viTriMo, saoMo)
+    diaBan.nhapSao(viTriMo, Mo)
 
     viTriTuyet = dichCung(viTriTrangSinh, amDuongNamNu * 9)
-    diaBan.nhapSao(viTriTuyet, saoTuyet)
+    diaBan.nhapSao(viTriTuyet, Tuyet)
 
     viTriThai = dichCung(viTriTrangSinh, amDuongNamNu * (-1))
-    diaBan.nhapSao(viTriThai, saoThai)
+    diaBan.nhapSao(viTriThai, Thai)
 
     viTriDuong = dichCung(viTriTrangSinh, amDuongNamNu * (-2))
-    diaBan.nhapSao(viTriDuong, saoDuong)
+    diaBan.nhapSao(viTriDuong, Duong)
 
     # An sao đôi
     #    Kình dương - Đà la
     viTriDaLa = dichCung(viTriLocTon, -1)
-    diaBan.nhapSao(viTriDaLa, saoDaLa)
+    diaBan.nhapSao(viTriDaLa, DaLa)
 
     viTriKinhDuong = dichCung(viTriLocTon, 1)
-    diaBan.nhapSao(viTriKinhDuong, saoKinhDuong)
+    diaBan.nhapSao(viTriKinhDuong, KinhDuong)
 
     #  Không - Kiếp
     # Khởi giờ Tý ở cung Hợi, đếm thuận đến giờ sinh được cung Địa kiếp
     viTriDiaKiep = dichCung(11, gioSinh)
-    diaBan.nhapSao(viTriDiaKiep, saoDiaKiep)
+    diaBan.nhapSao(viTriDiaKiep, DiaKiep)
 
     viTriDiaKhong = dichCung(12, 12 - viTriDiaKiep)
-    diaBan.nhapSao(viTriDiaKhong, saoDiaKhong)
+    diaBan.nhapSao(viTriDiaKhong, DiaKhong)
 
-    viTriHoaTinh, viTriLinhTinh = timHoaLinh(chiNam, gioSinh,
-                                             gioiTinh, amDuongNamSinh)
-    diaBan.nhapSao(viTriHoaTinh, saoHoaTinh)
-    diaBan.nhapSao(viTriLinhTinh, saoLinhTinh)
+    viTriHoaTinh, viTriLinhTinh = timHoaLinh(chiNam, gioSinh, gioiTinh, amDuongNamSinh)
+    diaBan.nhapSao(viTriHoaTinh, HoaTinh)
+    diaBan.nhapSao(viTriLinhTinh, LinhTinh)
 
     viTriLongTri = dichCung(5, chiNam - 1)
-    diaBan.nhapSao(viTriLongTri, saoLongTri)
+    diaBan.nhapSao(viTriLongTri, LongTri)
 
     viTriPhuongCac = dichCung(2, 2 - viTriLongTri)
-    diaBan.nhapSao(viTriPhuongCac, saoPhuongCac, saoGiaiThan)
+    diaBan.nhapSao(viTriPhuongCac, PhuongCac, GiaiThan)
 
     viTriTaPhu = dichCung(5, tt - 1)
-    diaBan.nhapSao(viTriTaPhu, saoTaPhu)
+    diaBan.nhapSao(viTriTaPhu, TaPhu)
 
     viTriHuuBat = dichCung(2, 2 - viTriTaPhu)
-    diaBan.nhapSao(viTriHuuBat, saoHuuBat)
+    diaBan.nhapSao(viTriHuuBat, HuuBat)
 
     viTriVanKhuc = dichCung(5, gioSinh - 1)
-    diaBan.nhapSao(viTriVanKhuc, saoVanKhuc)
+    diaBan.nhapSao(viTriVanKhuc, VanKhuc)
 
     viTriVanXuong = dichCung(2, 2 - viTriVanKhuc)
-    diaBan.nhapSao(viTriVanXuong, saoVanXuong)
+    diaBan.nhapSao(viTriVanXuong, VanXuong)
 
     viTriTamThai = dichCung(5, tt + nn - 2)
-    diaBan.nhapSao(viTriTamThai, saoTamThai)
+    diaBan.nhapSao(viTriTamThai, TamThai)
 
     viTriBatToa = dichCung(2, 2 - viTriTamThai)
-    diaBan.nhapSao(viTriBatToa, saoBatToa)
+    diaBan.nhapSao(viTriBatToa, BatToa)
 
     # ! Vị trí sao Ân Quang - Thiên Quý
     # ! Lấy cung thìn làm mồng 1 đếm thuận đến ngày sinh,
@@ -289,111 +262,111 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
     # ??? Thiên Quý ở đối cung của Ân Quang qua trục Sửu Mùi mới chính xác???
 
     viTriAnQuang = dichCung(viTriVanXuong, nn - 2)
-    diaBan.nhapSao(viTriAnQuang, saoAnQuang)
+    diaBan.nhapSao(viTriAnQuang, AnQuang)
 
     viTriThienQuy = dichCung(2, 2 - viTriAnQuang)
-    diaBan.nhapSao(viTriThienQuy, saoThienQuy)
+    diaBan.nhapSao(viTriThienQuy, ThienQuy)
 
     viTriThienKhoi = timThienKhoi(canNam)
-    diaBan.nhapSao(viTriThienKhoi, saoThienKhoi)
+    diaBan.nhapSao(viTriThienKhoi, ThienKhoi)
 
     viTriThienViet = dichCung(5, 5 - viTriThienKhoi)
-    diaBan.nhapSao(viTriThienViet, saoThienViet)
+    diaBan.nhapSao(viTriThienViet, ThienViet)
 
     viTriThienHu = dichCung(7, chiNam - 1)
-    diaBan.nhapSao(viTriThienHu, saoThienHu)
+    diaBan.nhapSao(viTriThienHu, ThienHu)
 
     viTriThienKhoc = dichCung(7, -chiNam + 1)
-    diaBan.nhapSao(viTriThienKhoc, saoThienKhoc)
+    diaBan.nhapSao(viTriThienKhoc, ThienKhoc)
 
     viTriThienTai = dichCung(diaBan.cungMenh, chiNam - 1)
-    diaBan.nhapSao(viTriThienTai, saoThienTai)
+    diaBan.nhapSao(viTriThienTai, ThienTai)
 
     viTriThienTho = dichCung(diaBan.cungThan, chiNam - 1)
-    diaBan.nhapSao(viTriThienTho, saoThienTho)
+    diaBan.nhapSao(viTriThienTho, ThienTho)
 
     viTriHongLoan = dichCung(4, -chiNam + 1)
-    diaBan.nhapSao(viTriHongLoan, saoHongLoan)
+    diaBan.nhapSao(viTriHongLoan, HongLoan)
 
     viTriThienHy = dichCung(viTriHongLoan, 6)
-    diaBan.nhapSao(viTriThienHy, saoThienHy)
+    diaBan.nhapSao(viTriThienHy, ThienHy)
 
     #  Thiên Quan - Thiên Phúc
     viTriThienQuan, viTriThienPhuc = timThienQuanThienPhuc(canNam)
-    diaBan.nhapSao(viTriThienQuan, saoThienQuan)
-    diaBan.nhapSao(viTriThienPhuc, saoThienPhuc)
+    diaBan.nhapSao(viTriThienQuan, ThienQuan)
+    diaBan.nhapSao(viTriThienPhuc, ThienPhuc)
 
     viTriThienHinh = dichCung(10, tt - 1)
-    diaBan.nhapSao(viTriThienHinh, saoThienHinh)
+    diaBan.nhapSao(viTriThienHinh, ThienHinh)
 
     viTriThienRieu = dichCung(viTriThienHinh, 4)
-    diaBan.nhapSao(viTriThienRieu, saoThienRieu, saoThienY)
+    diaBan.nhapSao(viTriThienRieu, ThienRieu, ThienY)
 
     viTriCoThan = timCoThan(chiNam)
-    diaBan.nhapSao(viTriCoThan, saoCoThan)
+    diaBan.nhapSao(viTriCoThan, CoThan)
 
     viTriQuaTu = dichCung(viTriCoThan, -4)
-    diaBan.nhapSao(viTriQuaTu, saoQuaTu)
+    diaBan.nhapSao(viTriQuaTu, QuaTu)
 
     viTriVanTinh = dichCung(viTriKinhDuong, 2)
-    diaBan.nhapSao(viTriVanTinh, saoVanTinh)
+    diaBan.nhapSao(viTriVanTinh, VanTinh)
 
     viTriDuongPhu = dichCung(viTriVanTinh, 2)
-    diaBan.nhapSao(viTriDuongPhu, saoDuongPhu)
+    diaBan.nhapSao(viTriDuongPhu, DuongPhu)
 
     viTriQuocAn = dichCung(viTriDuongPhu, 3)
-    diaBan.nhapSao(viTriQuocAn, saoQuocAn)
+    diaBan.nhapSao(viTriQuocAn, QuocAn)
 
     # Thai phụ - Phong Cáo
     viTriThaiPhu = dichCung(viTriVanKhuc, 2)
-    diaBan.nhapSao(viTriThaiPhu, saoThaiPhu)
+    diaBan.nhapSao(viTriThaiPhu, ThaiPhu)
 
     viTriPhongCao = dichCung(viTriVanKhuc, -2)
-    diaBan.nhapSao(viTriPhongCao, saoPhongCao)
+    diaBan.nhapSao(viTriPhongCao, PhongCao)
 
     # Thiên giải - Địa giải
     #    Theo cụ Thiên Lương: Lấy cung Thân làm tháng Giêng, đếm thuận nhưng
     #    nhảy cung là Thiên giải. Một số trang web đếm nhưng không nhảy cung???
     #    Liệu phương cách nào đúng?
     viTriThienGiai = dichCung(9, (2 * tt) - 2)
-    diaBan.nhapSao(viTriThienGiai, saoThienGiai)
+    diaBan.nhapSao(viTriThienGiai, ThienGiai)
 
     viTriDiaGiai = dichCung(viTriTaPhu, 3)
-    diaBan.nhapSao(viTriDiaGiai, saoDiaGiai)
+    diaBan.nhapSao(viTriDiaGiai, DiaGiai)
 
     # Thiên la - Địa võng, Thiên thương - Thiên sứ
     viTriThienLa = 5
-    diaBan.nhapSao(viTriThienLa, saoThienLa)
+    diaBan.nhapSao(viTriThienLa, ThienLa)
 
     viTriDiaVong = 11
-    diaBan.nhapSao(viTriDiaVong, saoDiaVong)
+    diaBan.nhapSao(viTriDiaVong, DiaVong)
 
     viTriThienThuong = diaBan.cungNoboc
-    diaBan.nhapSao(viTriThienThuong, saoThienThuong)
+    diaBan.nhapSao(viTriThienThuong, ThienThuong)
 
     viTriThienSu = diaBan.cungTatAch
-    diaBan.nhapSao(viTriThienSu, saoThienSu)
+    diaBan.nhapSao(viTriThienSu, ThienSu)
 
     # Vòng Thiên mã
     viTriThienMa = timThienMa(chiNam)
-    diaBan.nhapSao(viTriThienMa, saoThienMa)
+    diaBan.nhapSao(viTriThienMa, ThienMa)
 
     viTriHoaCai = dichCung(viTriThienMa, 2)
-    diaBan.nhapSao(viTriHoaCai, saoHoaCai)
+    diaBan.nhapSao(viTriHoaCai, HoaCai)
 
     viTriKiepSat = dichCung(viTriThienMa, 3)
-    diaBan.nhapSao(viTriKiepSat, saoKiepSat)
+    diaBan.nhapSao(viTriKiepSat, KiepSat)
 
     viTriDaoHoa = dichCung(viTriKiepSat, 4)
-    diaBan.nhapSao(viTriDaoHoa, saoDaoHoa)
+    diaBan.nhapSao(viTriDaoHoa, DaoHoa)
 
     # Phá toái
     viTriPhaToai = timPhaToai(chiNam)
-    diaBan.nhapSao(viTriPhaToai, saoPhaToai)
+    diaBan.nhapSao(viTriPhaToai, PhaToai)
 
     # Đẩu quân
     viTriDauQuan = dichCung(chiNam, -tt + gioSinh)
-    diaBan.nhapSao(viTriDauQuan, saoDauQuan)
+    diaBan.nhapSao(viTriDauQuan, DauQuan)
 
     #  Tứ Hóa
     # An theo 10 câu của cụ Thiên Lương trong cuốn
@@ -450,17 +423,17 @@ def lapDiaBan(diaBan, nn, tt, nnnn, gioSinh, gioiTinh, duongLich, timeZone):
         viTriHoaKhoa = viTriThaiAm
         viTriHoaKy = viTriThamLang
 
-    diaBan.nhapSao(viTriHoaLoc, saoHoaLoc)
-    diaBan.nhapSao(viTriHoaQuyen, saoHoaQuyen)
-    diaBan.nhapSao(viTriHoaKhoa, saoHoaKhoa)
-    diaBan.nhapSao(viTriHoaKy, saoHoaKy)
+    diaBan.nhapSao(viTriHoaLoc, HoaLoc)
+    diaBan.nhapSao(viTriHoaQuyen, HoaQuyen)
+    diaBan.nhapSao(viTriHoaKhoa, HoaKhoa)
+    diaBan.nhapSao(viTriHoaKy, HoaKy)
 
     #  An Lưu Hà - Thiên Trù
     # Sách cụ Thiên Lương không đề cập đến 2 sao này
     # Mong mọi người kiểm chứng
     viTriLuuHa, viTriThienTru = timLuuTru(canNam)
-    diaBan.nhapSao(viTriLuuHa, saoLuuHa)
-    diaBan.nhapSao(viTriThienTru, saoThienTru)
+    diaBan.nhapSao(viTriLuuHa, LuuHa)
+    diaBan.nhapSao(viTriThienTru, ThienTru)
 
     # An Tuần, Triệt
     ketThucTuan = dichCung(chiNam, 10 - canNam)

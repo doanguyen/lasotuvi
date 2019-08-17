@@ -3,7 +3,7 @@
 (c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
 from enum import Enum, unique
-from typing import Optional, Union
+from typing import Optional
 
 from lasotuvi import AmDuong
 from lasotuvi.Hanh import Hanh
@@ -40,88 +40,16 @@ class Tinh(Enum):
     AC_TINH = 16
 
 
-class Sao(object):
-
-    @property
-    def id(self) -> Optional[int]:
-        return self._id or None
-
-    @id.setter
-    def id(self, value: int) -> None:
-        self._id = value or None
-
-    @property
-    def ten(self) -> Optional[str]:
-        return self._name or None
-
-    @ten.setter
-    def ten(self, value: str) -> None:
-        self._name = value or None
-
-    @property
-    def hanh(self) -> Optional[Hanh]:
-        return self._hanh or None
-
-    @hanh.setter
-    def hanh(self, hanh_sao: Hanh) -> None:
-        self._hanh = hanh_sao
-        self._sao_css = Hanh.css
-
-    @property
-    def loai(self) -> Union[int, Tinh]:
-        return self._loai or None
-
-    @loai.setter
-    def loai(self, sao_loai: Union[int, Tinh]) -> None:
-        self._loai = sao_loai
-
-    @property
-    def phuong_vi(self) -> str_or_none:
-        return self._phuong_vi or None
-
-    @phuong_vi.setter
-    def phuong_vi(self, sao_phuong_vi: str) -> None:
-        self._phuong_vi = sao_phuong_vi
-
-    @property
-    def am_duong(self) -> int_or_none:
-        return self._am_duong or None
-
-    @am_duong.setter
-    def am_duong(self, sao_am_duong: int) -> None:
-        self._am_duong = sao_am_duong
-
-    @property
-    def vong_trang_sinh(self) -> int_or_none:
-        return self._vong_trang_sinh or None
-
-    @vong_trang_sinh.setter
-    def vong_trang_sinh(self, sao_vong_trang_sinh: int) -> None:
-        self._vong_trang_sinh = sao_vong_trang_sinh
-
-    @property
-    def css(self) -> str_or_none:
-        return self._sao_css or None
-
-    # @css.setter
-    # def css(self, sao_css: str) -> None:
-    #     self._css = sao_css
-
-    @property
-    def dac_tinh(self) -> str_or_none:
-        return self._dac_tinh or None
-
-    @dac_tinh.setter
-    def dac_tinh(self, sao_dac_tinh: str) -> None:
-        self._dac_tinh = sao_dac_tinh
-
-    @property
-    def vi_tri_cung(self) -> int_or_none:
-        return self._vi_tri_cung or None
-
-    @vi_tri_cung.setter
-    def vi_tri_cung(self, sao_vi_tri_cung: int) -> None:
-        self._vi_tri_cung = sao_vi_tri_cung
+class Sao:
+    # Thành phần cơ bản trong tử vi. Tính chất của 1 sao cơ bản bao gồm:
+    # id: int
+    # ten: str
+    # hanh: Hanh
+    # loai: Tinh
+    # phuong_vi: str
+    # am_duong: AmDuong
+    # vong_trang_sinh: bool
+    pass
 
 
 class TuVi(Sao):

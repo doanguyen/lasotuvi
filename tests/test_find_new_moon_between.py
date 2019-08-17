@@ -4,8 +4,6 @@ from ephem import Date
 
 
 class TestFind_new_moon_between(TestCase):
-    def test_find_new_moon_between(self):
-        self.fail()
 
     def test_find_new_moon_between_year_1993_1994(self):
         """
@@ -14,4 +12,4 @@ class TestFind_new_moon_between(TestCase):
         """
         start_date = Date('1989/12/28 10:20')
         end_date = Date('1990/01/27 02:20')
-        self.assertFalse(end_date-start_date < 29.5)
+        self.assertFalse(end_date - start_date < 29.5)
