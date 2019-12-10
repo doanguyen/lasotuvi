@@ -5,7 +5,7 @@
 from lasotuvi.AmDuong import nguHanh
 
 
-class Sao(object):
+class Sao:
     """Summary
         Args:
             saoID (int): 1, 2, ...

@@ -5,7 +5,6 @@
 
 from lasotuvi.Lich_HND import S2L, L2S, jdFromDate
 
-
 thienCan = [
     {
         "id": 0,
@@ -107,7 +106,6 @@ thienCan = [
         'amDuong': -1
     },
 ]
-
 
 diaChi = [
     {
@@ -215,13 +213,13 @@ diaChi = [
 ]
 
 
-def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
+def ngayThangNam(nn: int, tt: int, nnnn: int, duongLich: bool = True, timeZone=7):
     """Summary
 
     Args:
-        nn (TYPE): ngay
-        tt (TYPE): thang
-        nnnn (TYPE): nam
+        nn (int): ngay
+        tt (int): thang
+        nnnn (int): nam
         duongLich (bool, optional): bool
         timeZone (int, optional): +7 Vietnam
 
@@ -233,8 +231,7 @@ def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
     """
     thangNhuan = 0
     # if nnnn > 1000 and nnnn < 3000 and nn > 0 and \
-    if nn > 0 and \
-       nn < 32 and tt < 13 and tt > 0:
+    if 0 < nn < 32 and 13 > tt > 0:
         if duongLich is True:
             [nn, tt, nnnn, thangNhuan] = S2L(nn, tt, nnnn, timeZone=timeZone)
         return [nn, tt, nnnn, thangNhuan]
@@ -242,7 +239,8 @@ def ngayThangNam(nn, tt, nnnn, duongLich=True, timeZone=7):
         raise Exception("Ngày, tháng, năm không chính xác.")
 
 
-def canChiNgay(nn, tt, nnnn, duongLich=True, timeZone=7, thangNhuan=False):
+def canChiNgay(nn: int, tt: int, nnnn: int, duongLich: bool = True, timeZone: int = 7,
+               thangNhuan: bool = False):
     """Summary
 
     Args:
@@ -254,7 +252,7 @@ def canChiNgay(nn, tt, nnnn, duongLich=True, timeZone=7, thangNhuan=False):
         thangNhuan (bool, optional): Có phải là tháng nhuận không?
 
     Returns:
-        TYPE: Description
+        [int, int]: Can ngày và chi ngày
     """
     if duongLich is False:
         [nn, tt, nnnn] = L2S(nn, tt, nnnn, thangNhuan, timeZone)
@@ -265,7 +263,7 @@ def canChiNgay(nn, tt, nnnn, duongLich=True, timeZone=7, thangNhuan=False):
     return [canNgay, chiNgay]
 
 
-def canChiGio(canNgay, gio):
+def canChiGio(canNgay: int, gio: int):
     """Phần này có lẽ chưa cần thiết và sẽ bổ sung sau.
 
     Args:
@@ -278,8 +276,8 @@ def canChiGio(canNgay, gio):
     return False
 
 
-def ngayThangNamCanChi(nn, tt, nnnn, duongLich=True, timeZone=7):
-    """chuyển đổi năm, tháng âm/dương lịch sang Can, Chi trong tiếng Việt.
+def ngayThangNamCanChi(nn: int, tt: int, nnnn: int, duongLich: int = True, timeZone: int = 7):
+    """Chuyển đổi năm, tháng âm/dương lịch sang Can, Chi trong tiếng Việt.
     Không tính đến can ngày vì phải chuyển đổi qua lịch Julius.
 
     Hàm tìm can ngày là hàm canChiNgay(nn, tt, nnnn, duongLich=True,\
@@ -291,7 +289,7 @@ def ngayThangNamCanChi(nn, tt, nnnn, duongLich=True, timeZone=7):
         nnnn (int): Năm
 
     Returns:
-        TYPE: Description
+        [int, int, int]: Can tháng, can năm, chi năm
     """
     if duongLich is True:
         [nn, tt, nnnn, thangNhuan] = \
@@ -305,7 +303,7 @@ def ngayThangNamCanChi(nn, tt, nnnn, duongLich=True, timeZone=7):
     return [canThang, canNamSinh, chiNam]
 
 
-def nguHanh(tenHanh):
+def nguHanh(tenHanh: str) -> dict:
     """
     Args:
         tenHanh (string): Tên Hành trong ngũ hành, Kim hoặc K, Moc hoặc M,
@@ -319,19 +317,19 @@ def nguHanh(tenHanh):
     """
     if tenHanh in ["Kim", "K"]:
         return {"id": 1, "tenHanh": "Kim", "cuc": 4, "tenCuc": "Kim tứ Cục",
-                "css": "hanhKim"}
+            "css": "hanhKim"}
     elif tenHanh == "Moc" or tenHanh == "M":
         return {"id": 2, "tenHanh": "Mộc", "cuc": 3, "tenCuc": "Mộc tam Cục",
-                "css": "hanhMoc"}
+            "css": "hanhMoc"}
     elif tenHanh == "Thuy" or tenHanh == "T":
         return {"id": 3, "tenHanh": "Thủy", "cuc": 2, "tenCuc": "Thủy nhị Cục",
-                "css": "hanhThuy"}
+            "css": "hanhThuy"}
     elif tenHanh == "Hoa" or tenHanh == "H":
         return {"id": 4, "tenHanh": "Hỏa", "cuc": 6, "tenCuc": "Hỏa lục Cục",
-                "css": "hanhHoa"}
+            "css": "hanhHoa"}
     elif tenHanh == "Tho" or tenHanh == "O":
         return {"id": 5, "tenHanh": "Thổ", "cuc": 5, "tenCuc": "Thổ ngũ Cục",
-                "css": "hanhTho"}
+            "css": "hanhTho"}
     else:
         raise Exception(
             "Tên Hành phải thuộc Kim (K), Mộc (M), Thủy (T), \

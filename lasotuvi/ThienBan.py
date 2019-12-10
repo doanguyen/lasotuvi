@@ -2,16 +2,16 @@
 """
 (c) 2016 doanguyen <dungnv2410@gmail.com>.
 """
-from lasotuvi.AmDuong import (canChiNgay, diaChi, ngayThangNam, ngayThangNamCanChi,
-                     nguHanh, nguHanhNapAm, thienCan, timCuc, sinhKhac)
 import time
+
+from lasotuvi.AmDuong import (canChiNgay, diaChi, ngayThangNam, ngayThangNamCanChi,
+    nguHanh, nguHanhNapAm, thienCan, timCuc, sinhKhac)
 from lasotuvi.Lich_HND import jdFromDate
 
 
-class lapThienBan(object):
+class lapThienBan:
     def __init__(self, nn, tt, nnnn, gioSinh, gioiTinh, ten, diaBan,
                  duongLich=True, timeZone=7):
-        super(lapThienBan, self).__init__()
         self.gioiTinh = 1 if gioiTinh == 1 else -1
         self.namNu = "Nam" if gioiTinh == 1 else "Nữ"
 
@@ -33,7 +33,7 @@ class lapThienBan(object):
                 ngayThangNam(self.ngayDuong, self.thangDuong, self.namDuong,
                              True, self.timeZone)
         else:
-            self.ngayAm, self.thangAm, self.namAm = self.ngayDuong,\
+            self.ngayAm, self.thangAm, self.namAm = self.ngayDuong, \
                 self.thangDuong, self.namDuong
 
         self.canThang, self.canNam, self.chiNam = \
