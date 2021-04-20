@@ -16,7 +16,7 @@ setup(name='lasotuvi',
           "more-itertools==4.1.0",
           "mypy==0.580",
           "pluggy==0.6.0",
-          "py==1.5.3",
+          "py==1.10.0",
           "pytest==3.5.0",
           "six==1.11.0",
           "typed-ast==1.1.0"
