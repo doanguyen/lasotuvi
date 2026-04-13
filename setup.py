@@ -17,7 +17,7 @@ setup(name='lasotuvi',
           "mypy==0.580",
           "pluggy==0.6.0",
           "py==1.10.0",
-          "pytest==3.5.0",
+          "pytest==9.0.3",
           "six==1.11.0",
           "typed-ast==1.1.0"
       ],
